@@ -1,16 +1,15 @@
---- org.nongnu.gsequencer.gsequencer.appdata.xml.orig	2019-06-04 22:44:12.184687620 +0200
-+++ org.nongnu.gsequencer.gsequencer.appdata.xml	2019-06-04 22:47:40.373705845 +0200
-@@ -35,4 +35,13 @@
-   </screenshots>
- 
+--- org.nongnu.gsequencer.gsequencer.appdata.xml.orig	2019-06-12 21:02:48.415309524 +0200
++++ org.nongnu.gsequencer.gsequencer.appdata.xml	2019-06-12 21:03:09.431575631 +0200
+@@ -37,6 +37,12 @@
    <url type="homepage">http://nongnu.org/gsequencer</url>
-+
-+  <releases>
-+    <release version="2.1.74" date="2019-06-01">
+ 
+   <releases>
++    <release version="2.1.76" date="2019-06-12">
 +      <description>
-+        <p>Fixed some memory-leaks.</p>
-+	<p>Fixed potential SIGSEGV during restore from XML in ags_simple_file.c.</p>
++        <p>Improved mutexes.</p>
 +      </description>
 +    </release>
-+  </releases>
- </component>
++
+     <release version="2.1.74" date="2019-06-01">
+       <description>
+         <p>Fixed some memory-leaks.</p>
