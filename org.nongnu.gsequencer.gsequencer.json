@@ -224,14 +224,9 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.1.x/gsequencer-2.1.77.tar.gz",
-                    "sha256": "af0ae34d52e4523739be7224d8a3b117623ee5ffee8ffa02f6f8e77142d259a4"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.2.x/gsequencer-2.2.5.tar.gz",
+                    "sha256": "aed072235b23229386d7b99b7b8e614da8922e7a89ad84dd93d67d1045155528"
 
-                },               
-                {
-                    "type": "patch",
-                    "strip-components": 0,
-                    "path": "patches/gsequencer-app-stream-release.patch"
                 }               
             ]
         }
