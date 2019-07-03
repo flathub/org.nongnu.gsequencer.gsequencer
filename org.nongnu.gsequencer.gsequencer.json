@@ -238,7 +238,7 @@
             "buildsystem": "simple",
             "build-commands": [
 		"mkdir build",
-		"cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib ..",
+		"cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DLIB_SUFFIX=\"\" ..",
 		"cd build && make",
 		"cd build && make install"
 	    ],
@@ -258,6 +258,7 @@
 	    "name": "cmt",
 	    "buildsystem": "simple",
 	    "build-commands": [
+		"sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
 		"cd src && make",
 		"cd src && make install"
 	    ],
@@ -266,12 +267,6 @@
 		    "type": "archive",
 		    "url": "http://www.ladspa.org/download/cmt_1.17.tgz",
 		    "sha256": "eb56d7abebfdf8a6d0ad65d012238c9fc394dd41eeca11900812a8cb6b07ad1f"
-		},
-		{
-		    "type": "script",
-		    "commands": [
-			"sed -i -e 's|/usr/lib/ladspa|/app/lib/ladspa|g' src/Makefile"
-		    ]
 		}
 	    ]
 	},
@@ -280,6 +275,7 @@
 	    "name": "invada-studio-plugins-lv2",
             "buildsystem": "simple",
             "build-commands": [
+		"sed -i -e 's~/usr/local/lib/lv2~/app/lib/lv2~g' Makefile",
 		"make",
 		"make install-sys"
 	    ],
@@ -288,12 +284,6 @@
 		    "type": "archive",
 		    "url": "https://launchpad.net/invada-studio/lv2/1.2/+download/invada-studio-plugins-lv2_1.2.0-0.tar.gz",
 		    "sha256": "9e67af0ebc8a6394b50785034b368573c8a9241dd2500bdc91905977b94f8209"
-		},
-		{
-		    "type": "script",
-		    "commands": [
-			"sed -i -e 's|/usr/local/lib/lv2|/app/lib/lv2|g' Makefile"
-		    ]
 		}
 	    ]
 	},
