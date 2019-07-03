@@ -242,6 +242,9 @@
 		"cd build && make",
 		"cd build && make install"
 	    ],
+            "cleanup": [
+                "/include"
+	    ],
 	    "sources": [
 		{
 		    "type": "archive",
@@ -253,7 +256,7 @@
 
 	{
 	    "name": "cmt",
-	    "build-system": "simple",
+	    "buildsystem": "simple",
 	    "build-commands": [
 		"cd src && make",
 		"cd src && make install"
@@ -267,7 +270,7 @@
 		{
 		    "type": "script",
 		    "commands": [
-			"sed -i \"s/\/usr\/lib\/ladspa/\/app\/lib\/ladspa/g\" src/Makefile"
+			"sed -i -e 's|/usr/lib/ladspa|/app/lib/ladspa|g' src/Makefile"
 		    ]
 		}
 	    ]
@@ -289,7 +292,7 @@
 		{
 		    "type": "script",
 		    "commands": [
-			"sed -i \"s/\/usr\/local\/lib\/lv2/\/app\/lib\/lv2/g\" Makefile"
+			"sed -i -e 's|/usr/local/lib/lv2|/app/lib/lv2|g' Makefile"
 		    ]
 		}
 	    ]
