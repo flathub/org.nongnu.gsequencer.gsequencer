@@ -207,98 +207,98 @@
             ]
         },
 
-	{
-	    "name": "libglade",
-            "no-autogen": true,	    
+        {
+            "name": "libglade",
+            "no-autogen": true,     
             "config-opts": [
                 "--disable-static"
             ],
-	    "cleanup": [
-		"/bin",
-		"/include",
-		"/share"
-	    ],
-	    "sources": [
-		{
-		    "type": "archive",
-		    "url": "http://ftp.gnome.org/pub/gnome/sources/libglade/2.6/libglade-2.6.4.tar.bz2",
-		    "sha256": "64361e7647839d36ed8336d992fd210d3e8139882269bed47dc4674980165dec"
-		},
-		{
-		    "type": "script",
-		    "commands": [
-			"sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in"
-		    ]
-		}
-	    ]
-	},
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/share"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/gnome/sources/libglade/2.6/libglade-2.6.4.tar.bz2",
+                    "sha256": "64361e7647839d36ed8336d992fd210d3e8139882269bed47dc4674980165dec"
+                },
+                {
+                    "type": "script",
+                    "commands": [
+                        "sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in"
+                    ]
+                }
+            ]
+        },
 
-	{
-	    "name": "fluidsynth",
+        {
+            "name": "fluidsynth",
             "buildsystem": "simple",
             "build-commands": [
-		"mkdir build",
-		"cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DLIB_SUFFIX=\"\" ..",
-		"cd build && make",
-		"cd build && make install"
-	    ],
+                "mkdir build",
+                "cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DLIB_SUFFIX=\"\" ..",
+                "cd build && make",
+                "cd build && make install"
+            ],
             "cleanup": [
                 "/include"
-	    ],
-	    "sources": [
-		{
-		    "type": "archive",
-		    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.5.tar.gz",
-		    "sha256": "69b244512883491e7e66b4d0151c61a0d6d867d4d2828c732563be0f78abcc51"
-		}
-	    ]
-	},
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.5.tar.gz",
+                    "sha256": "69b244512883491e7e66b4d0151c61a0d6d867d4d2828c732563be0f78abcc51"
+                }
+            ]
+        },
 
-	{
-	    "name": "cmt",
-	    "buildsystem": "simple",
-	    "build-commands": [
-		"sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
-		"cd src && make",
-		"cd src && make install"
-	    ],
-	    "sources": [
-		{
-		    "type": "archive",
-		    "url": "http://www.ladspa.org/download/cmt_1.17.tgz",
-		    "sha256": "eb56d7abebfdf8a6d0ad65d012238c9fc394dd41eeca11900812a8cb6b07ad1f"
-		}
-	    ]
-	},
-	
-	{
-	    "name": "invada-studio-plugins-lv2",
+        {
+            "name": "cmt",
             "buildsystem": "simple",
             "build-commands": [
-		"sed -i -e 's~/usr/local/lib/lv2~/app/lib/lv2~g' Makefile",
-		"make",
-		"make install-sys"
-	    ],
-	    "sources": [
-		{
-		    "type": "archive",
-		    "url": "https://launchpad.net/invada-studio/lv2/1.2/+download/invada-studio-plugins-lv2_1.2.0-0.tar.gz",
-		    "sha256": "9e67af0ebc8a6394b50785034b368573c8a9241dd2500bdc91905977b94f8209"
-		}
-	    ]
-	},
+                "sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
+                "cd src && make",
+                "cd src && make install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.ladspa.org/download/cmt_1.17.tgz",
+                    "sha256": "eb56d7abebfdf8a6d0ad65d012238c9fc394dd41eeca11900812a8cb6b07ad1f"
+                }
+            ]
+        },
+        
+        {
+            "name": "invada-studio-plugins-lv2",
+            "buildsystem": "simple",
+            "build-commands": [
+                "sed -i -e 's~/usr/local/lib/lv2~/app/lib/lv2~g' Makefile",
+                "make",
+                "make install-sys"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://launchpad.net/invada-studio/lv2/1.2/+download/invada-studio-plugins-lv2_1.2.0-0.tar.gz",
+                    "sha256": "9e67af0ebc8a6394b50785034b368573c8a9241dd2500bdc91905977b94f8209"
+                }
+            ]
+        },
 
-	{
-	    "name": "calf-lv2",
-	    "sources": [
-		{
-		    "type": "archive",
-		    "url": "http://calf-studio-gear.org/files/calf-0.90.2.tar.gz",
-		    "sha256": "f0e9d36990ece7ae6334166ced5a2e02bbd8bcd2aa2ecad0efce0b4e6790c42e"
-		}
-	    ]
-	},
-	
+        {
+            "name": "calf-lv2",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://calf-studio-gear.org/files/calf-0.90.2.tar.gz",
+                    "sha256": "f0e9d36990ece7ae6334166ced5a2e02bbd8bcd2aa2ecad0efce0b4e6790c42e"
+                }
+            ]
+        },
+        
         {
             "name": "chrpath",
             "cleanup": ["*"],
