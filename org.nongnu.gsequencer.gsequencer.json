@@ -17,7 +17,11 @@
         /* Soundcard and MIDI */
         "--device=all",
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
-        "--filesystem=host"
+        "--filesystem=host",
+        "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
+        "--env=LADSPA_PATH=/app/lib/ladspa",
+        "--env=DSSI_PATH=/app/lib/dssi",
+        "--env=LV2_PATH=/app/lib/lv2"
     ],
     "cleanup": [
         "/include",
@@ -184,7 +188,7 @@
             "name": "lv2",
             "buildsystem": "simple",
             "build-commands": [
-                "./waf configure --prefix=/app --docdir=/app/share/doc/lv2",
+                "./waf configure --prefix=/app --libdir=/app/lib --docdir=/app/share/doc/lv2",
                 "./waf build -j $FLATPAK_BUILDER_N_JOBS",
                 "./waf install"
             ],
@@ -202,7 +206,7 @@
                 }
             ]
         },
-
+        
         {
             "name": "chrpath",
             "cleanup": ["*"],
@@ -227,7 +231,14 @@
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.2.x/gsequencer-2.2.9.tar.gz",
                     "sha256": "77297414c25b9599604ae453321e12d9837b935648da2aa6e2329ad0c98aad2a"
 
-                }               
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
+                    ]
+                }
+                
             ]
         }
     ]
