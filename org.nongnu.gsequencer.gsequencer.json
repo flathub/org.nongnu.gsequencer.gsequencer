@@ -17,7 +17,11 @@
         /* Soundcard and MIDI */
         "--device=all",
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
-        "--filesystem=host"
+        "--filesystem=host",
+        "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
+        "--env=LADSPA_PATH=/app/lib/ladspa",
+        "--env=DSSI_PATH=/app/lib/dssi",
+        "--env=LV2_PATH=/app/lib/lv2"
     ],
     "cleanup": [
         "/include",
@@ -184,7 +188,7 @@
             "name": "lv2",
             "buildsystem": "simple",
             "build-commands": [
-                "./waf configure --prefix=/app --docdir=/app/share/doc/lv2",
+                "./waf configure --prefix=/app --libdir=/app/lib --docdir=/app/share/doc/lv2",
                 "./waf build -j $FLATPAK_BUILDER_N_JOBS",
                 "./waf install"
             ],
@@ -203,6 +207,100 @@
             ]
         },
 
+        {
+            "name": "libglade",
+            "rm-configure": true,
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libglade/2.6/libglade-2.6.4.tar.gz",
+                    "sha256": "c41d189b68457976069073e48d6c14c183075d8b1d8077cb6dfb8b7c5097add3"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "rm -f config.guess"
+                    ]
+                },
+                {
+                    "type": "script",
+                    "commands": [
+                        "autoreconf -fiv"
+                    ],
+                    "dest-filename": "autogen.sh"
+                }
+            ]
+        },
+        
+        {
+            "name": "fluidsynth",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir build",
+                "cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DLIB_SUFFIX=\"\" ..",
+                "cd build && make",
+                "cd build && make install"
+            ],
+            "cleanup": [
+                "/include"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.5.tar.gz",
+                    "sha256": "69b244512883491e7e66b4d0151c61a0d6d867d4d2828c732563be0f78abcc51"
+                }
+            ]
+        },
+
+        {
+            "name": "cmt",
+            "buildsystem": "simple",
+            "build-commands": [
+                "sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
+                "cd src && make",
+                "cd src && make install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.ladspa.org/download/cmt_1.17.tgz",
+                    "sha256": "eb56d7abebfdf8a6d0ad65d012238c9fc394dd41eeca11900812a8cb6b07ad1f"
+                }
+            ]
+        },
+        
+        {
+            "name": "invada-studio-plugins-lv2",
+            "buildsystem": "simple",
+            "build-commands": [
+                "sed -i -e 's~/usr/local/lib/lv2~/app/lib/lv2~g' Makefile",
+                "make",
+                "make install-sys"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://launchpad.net/invada-studio/lv2/1.2/+download/invada-studio-plugins-lv2_1.2.0-0.tar.gz",
+                    "sha256": "9e67af0ebc8a6394b50785034b368573c8a9241dd2500bdc91905977b94f8209"
+                }
+            ]
+        },
+
+        {
+            "name": "calf-lv2",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://calf-studio-gear.org/files/calf-0.90.2.tar.gz",
+                    "sha256": "f0e9d36990ece7ae6334166ced5a2e02bbd8bcd2aa2ecad0efce0b4e6790c42e"
+                }
+            ]
+        },
+        
         {
             "name": "chrpath",
             "cleanup": ["*"],
@@ -227,7 +325,14 @@
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.2.x/gsequencer-2.2.9.tar.gz",
                     "sha256": "77297414c25b9599604ae453321e12d9837b935648da2aa6e2329ad0c98aad2a"
 
-                }               
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
+                    ]
+                }
+                
             ]
         }
     ]
