@@ -322,8 +322,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.2.x/gsequencer-2.2.33.tar.gz",
-                    "sha256": "e9e6fb5d71dcbadea4050f5e23d23a772062628793a817a022e8041a267fde4f"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.2.x/gsequencer-2.2.36.tar.gz",
+                    "sha256": "b81c64d6681e51ae55072f52bf9d867c3141d6852e6f606b49d69076fc33896e"
 
                 },
                 {
