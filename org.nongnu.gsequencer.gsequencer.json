@@ -1,7 +1,7 @@
 {
     "app-id": "org.nongnu.gsequencer.gsequencer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
+    "runtime-version": "3.34",
     "sdk": "org.gnome.Sdk",
     "command": "gsequencer",
     "rename-desktop-file": "gsequencer.desktop",
@@ -86,7 +86,7 @@
                 "/lib/*.la"
             ]
         },
-        
+        "shared-modules/python2.7/python-2.7.json",
         {
             "name": "jack2",
             "buildsystem": "simple",
@@ -109,7 +109,6 @@
                 }
             ]
         },
-        
         {
             "name": "liblo",
             "sources": [
@@ -119,7 +118,7 @@
                     "sha256": "ace1b4e234091425c150261d1ca7070cece48ee3c228a5612d048116d864c06a"
                 }
             ]
-        },      
+        },
         {
             "name": "dssi",
             "rm-configure": true,
@@ -237,12 +236,9 @@
         
         {
             "name": "fluidsynth",
-            "buildsystem": "simple",
-            "build-commands": [
-                "mkdir build",
-                "cd build && cmake -DCMAKE_INSTALL_PREFIX=/app -DLIB_SUFFIX=\"\" ..",
-                "cd build && make",
-                "cd build && make install"
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DLIB_SUFFIX="
             ],
             "cleanup": [
                 "/include"
@@ -250,8 +246,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.5.tar.gz",
-                    "sha256": "69b244512883491e7e66b4d0151c61a0d6d867d4d2828c732563be0f78abcc51"
+                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.7.tar.gz",
+                    "sha256": "b68876d24c7fb34575ffa389bcfe8e61a24f1cf1da8ec6c3b2053efde98d0320"
                 }
             ]
         },
