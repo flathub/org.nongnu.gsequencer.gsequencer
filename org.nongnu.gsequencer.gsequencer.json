@@ -309,6 +309,10 @@
         
         {
             "name": "gsequencer",
+            "config-opts": [
+                "--without-included-regex",
+                "--enable-threads=posix"
+            ],
             "post-install": [
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "chrpath -d /app/lib/gsequencer/libgsequencer.so"
@@ -316,8 +320,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.3.x/gsequencer-2.3.15.tar.gz",
-                    "sha256": "b2cde600c52a5a34c7b4e1d9ed100e9c48e9056ce134b494be6f71b8f1cc7139"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.4.x/gsequencer-2.4.1.tar.gz",
+                    "sha256": "24efbb8beb1bc4caa026e9be07f325806eba0438a5e17d91ee4cafc7dc5763e6"
 
                 },
                 {
