@@ -309,6 +309,10 @@
         
         {
             "name": "gsequencer",
+            "config-opts": [
+                "--without-included-regex",
+                "--enable-threads=posix"
+            ],
             "post-install": [
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "chrpath -d /app/lib/gsequencer/libgsequencer.so"
