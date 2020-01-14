@@ -325,48 +325,120 @@
         },
 
         {
-            "name": "webkitgtk",
-            "config-opts": [ "--disable-geolocation", "--disable-video",
-                             "--disable-spellcheck", "--disable-credential-storage", "--disable-web-audio" ],
-            "build-options" : {
-                "env": {
-                    "PYTHON": "/usr/bin/python3"
-                },
-                "cflags": "-fno-delete-null-pointer-checks",
-                "cflags-override": true,
-                "cxxflags": "-fno-delete-null-pointer-checks",
-                "cxxflags-override": true,
-                "arch" : {
-                    "aarch64" : {
-                        "cflags": "-DENABLE_YARR_JIT=0 -fno-delete-null-pointer-checks",
-                        "cflags-override": true,
-                        "cxxflags": "-DENABLE_YARR_JIT=0 -fno-delete-null-pointer-checks",
-                        "cxxflags-override": true,
-                        "config-opts" : [
-                            "--disable-jit"
-                        ]
-                    }
-                }
-            },
-
-            "cleanup": [ "/share/doc", "/bin" ],
+            "name": "libsecret",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
-                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                    "url": "https://download.gnome.org/sources/libsecret/0.18/libsecret-0.18.8.tar.xz",
+                    "sha256": "3bfa889d260e0dbabcf5b9967f2aae12edcd2ddc9adc365de7a5cc840c311d15"
+                }
+            ]
+        },
+
+        {
+            "name": "enchant",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AbiWord/enchant/releases/download/v2.2.3/enchant-2.2.3.tar.gz",
+                    "sha256": "abd8e915675cff54c0d4da5029d95c528362266557c61c7149d53fa069b8076d"
+                }
+            ]
+        },
+        
+        {
+            "name": "gnome-common"
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gnome-common/3.18/gnome-common-3.18.0.tar.xz",
+                    "sha256": "22569e370ae755e04527b76328befc4c73b62bfd4a572499fde116b8318af8cf"
+                },
+            ]
+        },
+        
+
+        {
+            "name": "libnotify",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.8.tar.xz",
+                    "sha256": "69209e0b663776a00c7b6c0e560302a8dbf66b2551d55616304f240bba66e18c"
+                }
+            ]
+        },
+        
+        {
+            "name": "openjpeg",
+            "buildsystem": "cmake-ninja",
+            "builddir": "true",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/uclouvain/openjpeg/archive/v2.3.1.tar.gz",
+                    "sha256": "63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
+                }
+            ]
+        },
+
+        {
+            "name": "brotli",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/google/brotli/archive/v1.0.7.tar.gz",
+                    "sha256": "4c61bfb0faca87219ea587326c467b95acb25555b53d1a421ffa3c8a9296ee2c"
+                }
+            ]
+        },
+
+        {
+            "name": "woff2",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/google/woff2/archive/v1.0.2.tar.gz",
+                    "sha256": "add272bb09e6384a4833ffca4896350fdb16e0ca22df68c0384773c67a175594"
+                }
+            ]
+        },
+
+        {
+            "name": "webkitgtk",
+            "buildsystem": "cmake-ninja",
+            "builddir": "true",
+            "build-options": [
+                "cflags": "-g1"
+                "cxxflags": "-g1"
+                "arch": [
+                    "i386": [
+                        "ldflags": "-Wl,--no-keep-memory",
+                        "config-opts": [
+                            "-DCMAKE_SYSTEM_PROCESSOR=i586"
+                        ]
+                    ]
+                ]
+            ],
+            "config-opts": [
+                "-DPORT=GTK",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DENABLE_PLUGIN_PROCESS_GTK2=OFF",
+                "-DENABLE_GTKDOC=OFF",
+                "-DENABLE_MINIBROWSER=OFF",
+                "-DPYTHON_EXECUTABLE=/usr/bin/python3",
+            ],
+            "sources": [
+                {
+                    "type": "archive"
+                    "url": "https://webkitgtk.org/releases/webkitgtk-2.24.1.tar.xz",
+                    "sha256": "53cb8eaad2ca4caaae663d68331b83fd27d5bd5f6c5388d6ea3c455e338f396d"
                 },
                 {
                     "type": "patch",
-                    "path": "patches/webkitgtk-2.4.11-gcc6-1.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/webkit-gtk-2.4.11-JSStringRef-typedef.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/webkitgtk-video.patch"
+                    "path": "patches/webkitgtk-2-24-1-revert-sse2.patch"
                 }
             ]
         },
