@@ -434,7 +434,7 @@
                 "-DENABLE_PLUGIN_PROCESS_GTK2=OFF",
                 "-DENABLE_GTKDOC=OFF",
                 "-DENABLE_MINIBROWSER=OFF",
-                "-DPYTHON_EXECUTABLE=/usr/bin/python3",
+                "-DPYTHON_EXECUTABLE=/usr/bin/python3"
             ],
             "sources": [
                 {
