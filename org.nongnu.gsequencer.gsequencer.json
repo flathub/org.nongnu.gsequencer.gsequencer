@@ -363,6 +363,10 @@
                 {
                     "type": "patch",
                     "path": "patches/webkit-gtk-2.4.11-JSStringRef-typedef.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk-video.patch"
                 }
             ]
         },
