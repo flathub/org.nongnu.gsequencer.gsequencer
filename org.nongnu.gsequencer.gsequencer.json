@@ -347,7 +347,7 @@
         },
         
         {
-            "name": "gnome-common"
+            "name": "gnome-common",
             "sources": [
                 {
                     "type": "archive",
