@@ -19,6 +19,7 @@
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
+	"--env=AGS_ONLINE_HELP_START_FILENAME=/app/share/doc/gsequencer-doc/html/index.html",
         "--env=LADSPA_PATH=/app/lib/ladspa",
         "--env=DSSI_PATH=/app/lib/dssi",
         "--env=LV2_PATH=/app/lib/lv2"
@@ -29,6 +30,10 @@
         "/share/man",
         "/share/doc",
         "/share/gtk-doc",
+	"/share/doc/libags-doc",
+	"/share/doc/libags-audio-doc",
+	"/share/doc/libags-gui-doc",
+	"/share/doc/libgsequencer-doc",
         "*.la"
     ],
     "modules": [
@@ -306,22 +311,75 @@
                 }
             ]
         },
-        
+	
+        {
+            "name": "libsoup",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libsoup/2.66/libsoup-2.66.1.tar.xz",
+                    "sha256": "4a2cb6c1174540af13661636035992c2b179dfcb39f4d3fa7bee3c7e355c43ff"
+                }
+            ]
+        },
+
+	"name": "webkitgtk",
+            "config-opts": [ "--disable-geolocation", "--disable-video",
+                             "--disable-spellcheck", "--disable-credential-storage", "--disable-web-audio" ],
+            "build-options" : {
+                "env": {
+                    "PYTHON": "/usr/bin/python3"
+                },
+                "cflags": "-O2 -g -pipe -Wno-expansion-to-defined -Wno-class-memaccess -fno-delete-null-pointer-checks -fpermissive",
+                "cflags-override": true,
+                "cxxflags": "-O2 -g -pipe -Wno-expansion-to-defined -Wno-class-memaccess -fno-delete-null-pointer-checks -fpermissive",
+                "cxxflags-override": true,
+                "arch" : {
+                    "aarch64" : {
+                        "cflags": "-O2 -g -pipe -DENABLE_YARR_JIT=0 -Wno-expansion-to-defined -Wno-class-memaccess -fno-delete-null-pointer-checks -fpermissive",
+                        "cflags-override": true,
+                        "cxxflags": "-O2 -g -pipe -DENABLE_YARR_JIT=0 -Wno-expansion-to-defined -Wno-class-memaccess -fno-delete-null-pointer-checks -fpermissive",
+                        "cxxflags-override": true,
+                        "config-opts" : [
+                            "--disable-jit"
+                        ]
+                    }
+                }
+            },
+
+            "cleanup": [ "/share/doc", "/bin" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz",
+                    "sha256": "588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/webkitgtk-2.4.11.patch"
+                }
+            ]
+        },
+	
         {
             "name": "gsequencer",
             "config-opts": [
-                "--without-included-regex",
-                "--enable-threads=posix"
+                "--disable-introspection",
+		"--enable-gtk-doc",
+		"--enable-gtk-doc-html"
             ],
             "post-install": [
+		"make html",
+		"make install-html",
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "chrpath -d /app/lib/gsequencer/libgsequencer.so"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/2.4.x/gsequencer-2.4.8.tar.gz",
-                    "sha256": "b1ed46c07feefcda7d71d1020e249ba75195a61513fd697331a13c9e92dada05"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.0.x/gsequencer-3.0.1.tar.gz",
+                    "sha256": "06e36e6e35c06e9aa377e19524876a851fc13866800ed232dbf074abee1b28c3"
 
                 },
                 {
