@@ -456,7 +456,7 @@
             ],
             "build-commands": [
                 "make html",
-                "make fix-local-html",
+                "make fix-local-html"
 	    ],
             "post-install": [
                 "make install-html-mkdir",
