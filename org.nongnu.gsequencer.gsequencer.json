@@ -452,7 +452,7 @@
                 "--disable-introspection",
                 "--enable-gtk-doc",
                 "--enable-gtk-doc-html",
-		"MANPAGE_XSL": "/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+		"MANPAGE_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
             ],
             "build-commands": [
                 "make html",
