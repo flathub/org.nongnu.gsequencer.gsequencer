@@ -447,7 +447,6 @@
         
         {
             "name": "gsequencer",
-	    "buildsystem": "simple",
             "config-opts": [
                 "--disable-introspection",
                 "--enable-gtk-doc",
