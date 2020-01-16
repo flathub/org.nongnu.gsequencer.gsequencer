@@ -456,7 +456,7 @@
             ],
             "post-install": [
                 "make html",
-                "make fix-local-html"
+                "make fix-local-html",
                 "make install-html-mkdir",
                 "make install-html-mkdir-links",
                 "make install-html",
