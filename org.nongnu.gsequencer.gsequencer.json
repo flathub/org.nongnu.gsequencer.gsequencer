@@ -460,8 +460,7 @@
                 "make install-html-mkdir-links",
                 "make install-html",
                 "make install-html-links",
-                "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
-                "chrpath -d /app/lib/gsequencer/libgsequencer.so"
+                "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop"
             ],
             "sources": [
                 {
