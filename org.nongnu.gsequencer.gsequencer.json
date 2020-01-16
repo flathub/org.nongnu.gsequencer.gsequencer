@@ -19,7 +19,7 @@
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
-        "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer-doc/html/index.html",
+        "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer/html/index.html",
         "--env=LADSPA_PATH=/app/lib/ladspa",
         "--env=DSSI_PATH=/app/lib/dssi",
         "--env=LV2_PATH=/app/lib/lv2"
