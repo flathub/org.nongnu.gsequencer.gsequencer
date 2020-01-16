@@ -19,7 +19,7 @@
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
-        "--env=AGS_ONLINE_HELP_START_FILENAME=/app/share/doc/gsequencer-doc/html/index.html",
+        "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer-doc/html/index.html",
         "--env=LADSPA_PATH=/app/lib/ladspa",
         "--env=DSSI_PATH=/app/lib/dssi",
         "--env=LV2_PATH=/app/lib/lv2"
@@ -30,10 +30,6 @@
         "/share/man",
         "/share/doc",
         "/share/gtk-doc",
-        "/share/doc/libags-doc",
-        "/share/doc/libags-audio-doc",
-        "/share/doc/libags-gui-doc",
-        "/share/doc/libgsequencer-doc",
         "*.la"
     ],
     "modules": [
@@ -451,22 +447,32 @@
         
         {
             "name": "gsequencer",
+	    "buildsystem": "simple",
             "config-opts": [
                 "--disable-introspection",
                 "--enable-gtk-doc",
-                "--enable-gtk-doc-html"
+                "--enable-gtk-doc-html",
+		"env": [
+		    "MANPAGE_XSL": "/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+		]
             ],
-            "post-install": [
+            "build-commands": [
                 "make html",
+                "make fix-local-html",
+	    ],
+            "post-install": [
+                "make install-html-mkdir",
+                "make install-html-mkdir-links",
                 "make install-html",
+                "make install-html-links",
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "chrpath -d /app/lib/gsequencer/libgsequencer.so"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.0.x/gsequencer-3.0.1.tar.gz",
-                    "sha256": "06e36e6e35c06e9aa377e19524876a851fc13866800ed232dbf074abee1b28c3"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.0.x/gsequencer-3.0.3.tar.gz",
+                    "sha256": "267bb0ff1cfc64ad7923f5da127fa2a3616901b023863841468d240fa4f65b95"
 
                 },
                 {
@@ -475,8 +481,13 @@
                         "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
                     ]
                 }
-                
-            ]
+            ],
+            "cleanup": [
+		"/share/doc/libags-doc",
+		"/share/doc/libags-audio-doc",
+		"/share/doc/libags-gui-doc",
+		"/share/doc/libgsequencer-doc"
+	    ]
         }
     ]
 }
