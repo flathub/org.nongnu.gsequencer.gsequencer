@@ -454,11 +454,9 @@
                 "--enable-gtk-doc-html",
 		"MANPAGE_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
             ],
-            "build-commands": [
+            "post-install": [
                 "make html",
                 "make fix-local-html"
-	    ],
-            "post-install": [
                 "make install-html-mkdir",
                 "make install-html-mkdir-links",
                 "make install-html",
