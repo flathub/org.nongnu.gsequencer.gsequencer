@@ -28,7 +28,6 @@
         "/include",
         "/lib/pkgconfig",
         "/share/man",
-        "/share/doc",
         "/share/gtk-doc",
         "*.la"
     ],
@@ -44,7 +43,8 @@
                 "INSTALL_BINARY_DIR=/app/bin"
             ],
             "cleanup": [
-                "/bin"
+                "/bin",
+		"/share/doc"
             ],
             "sources": [
                 {
@@ -84,7 +84,8 @@
             "cleanup": [
                 "/bin",
                 "/include",
-                "/lib/*.la"
+                "/lib/*.la",
+		"/share/doc"
             ]
         },
         "shared-modules/python2.7/python-2.7.json",
@@ -110,8 +111,12 @@
                 }
             ]
         },
+
         {
             "name": "liblo",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -120,6 +125,7 @@
                 }
             ]
         },
+
         {
             "name": "dssi",
             "rm-configure": true,
@@ -127,7 +133,8 @@
                 "--disable-static"
             ],
             "cleanup": [
-                "/bin"
+                "/bin",
+		"/share/doc"
             ],
             "sources": [
                 {
@@ -147,6 +154,9 @@
 
         {
             "name": "audiofile",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -163,6 +173,9 @@
         {
             "name": "libinstpatch",
             "rm-configure": true,
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -211,7 +224,8 @@
             "name": "libglade",
             "rm-configure": true,
             "cleanup": [
-                "/bin"
+                "/bin",
+		"/share/doc"
             ],
             "sources": [
                 {
@@ -241,7 +255,8 @@
                 "-DLIB_SUFFIX="
             ],
             "cleanup": [
-                "/include"
+                "/include",
+		"/share/doc"
             ],
             "sources": [
                 {
@@ -251,6 +266,7 @@
                 }
             ]
         },
+	
         {
             "name": "cmt",
             "buildsystem": "simple",
@@ -258,6 +274,9 @@
                 "sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
                 "cd src && make",
                 "cd src && make install"
+            ],
+            "cleanup": [
+		"/share/doc"
             ],
             "sources": [
                 {
@@ -276,6 +295,9 @@
                 "make",
                 "make install-sys"
             ],
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -287,6 +309,9 @@
 
         {
             "name": "calf-lv2",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -311,6 +336,9 @@
         {
             "name": "libsoup",
             "buildsystem": "meson",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -322,6 +350,9 @@
 
         {
             "name": "libsecret",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -333,6 +364,9 @@
 
         {
             "name": "enchant",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -344,6 +378,9 @@
         
         {
             "name": "gnome-common",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -356,6 +393,9 @@
 
         {
             "name": "libnotify",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -369,6 +409,9 @@
             "name": "openjpeg",
             "buildsystem": "cmake-ninja",
             "builddir": "true",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -381,6 +424,9 @@
         {
             "name": "brotli",
             "buildsystem": "cmake-ninja",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -393,6 +439,9 @@
         {
             "name": "woff2",
             "buildsystem": "cmake-ninja",
+            "cleanup": [
+		"/share/doc"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -431,6 +480,9 @@
                 "-DENABLE_GTKDOC=OFF",
                 "-DENABLE_MINIBROWSER=OFF",
                 "-DPYTHON_EXECUTABLE=/usr/bin/python3"
+            ],
+            "cleanup": [
+		"/share/doc"
             ],
             "sources": [
                 {
