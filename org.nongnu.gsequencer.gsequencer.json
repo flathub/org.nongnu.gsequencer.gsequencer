@@ -448,14 +448,16 @@
         {
             "name": "gsequencer",
 	    "buildsystem": "simple",
-            "config-opts": {
-                "--disable-introspection",
-                "--enable-gtk-doc",
-                "--enable-gtk-doc-html",
-		"env": {
-		    "MANPAGE_XSL": "/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+            "config-opts": [
+		{
+                    "--disable-introspection",
+                    "--enable-gtk-doc",
+                    "--enable-gtk-doc-html",
+		    "env": [
+			"MANPAGE_XSL": "/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+		    ]
 		}
-            },
+            ],
             "build-commands": [
                 "make html",
                 "make fix-local-html",
