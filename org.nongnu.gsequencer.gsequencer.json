@@ -348,19 +348,7 @@
             ]
         },
 
-        {
-            "name": "libsecret",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libsecret/0.18/libsecret-0.18.8.tar.xz",
-                    "sha256": "3bfa889d260e0dbabcf5b9967f2aae12edcd2ddc9adc365de7a5cc840c311d15"
-                }
-            ]
-        },
+        "shared-modules/libsecret/libsecret.json",
 
         {
             "name": "enchant",
