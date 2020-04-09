@@ -500,8 +500,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.2.x/gsequencer-3.2.9.tar.gz",
-                    "sha256": "b285f72a3069064104df404d653a6ec24c4d79260958cbc34f530d9d1b129b60"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.2.x/gsequencer-3.2.10.tar.gz",
+                    "sha256": "38ded28222945595c12100c5e6207372294a131c8397240e3ce5255a3ed2e5d4"
 
                 },
                 {
