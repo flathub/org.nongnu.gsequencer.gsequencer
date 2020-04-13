@@ -88,12 +88,11 @@
 		"/share/doc"
             ]
         },
-        "shared-modules/python2.7/python-2.7.json",
         {
             "name": "jack2",
             "buildsystem": "simple",
             "build-commands": [
-                "./waf configure --prefix=/app --htmldir=/app/share/doc/jack/ --freebob=no --classic",
+                "./waf configure --prefix=/app --htmldir=/app/share/doc/jack/ --classic",
                 "./waf build -j $FLATPAK_BUILDER_N_JOBS",
                 "./waf install"
             ],
@@ -106,8 +105,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz",
-                    "sha256": "deefe2f936dc32f59ad3cef7e37276c2035ef8a024ca92118f35c9a292272e33"
+                    "url": "https://github.com/jackaudio/jack2/releases/download/v1.9.14/v1.9.14.tar.gz",
+                    "sha256": "a20a32366780c0061fd58fbb5f09e514ea9b7ce6e53b080a44b11a558a83217c"
                 }
             ]
         },
@@ -169,7 +168,7 @@
                 }
             ]
         },
-        
+
         {
             "name": "libinstpatch",
             "rm-configure": true,
@@ -188,6 +187,10 @@
                     "path": "patches/instpatch.examples.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "patches/instpatch-python-configure.patch"
+                },
+                {
                     "type": "script",
                     "commands": [
                         "autoreconf -fiv"
@@ -196,14 +199,14 @@
                 }
             ]
         },
-        
+
         {
             "name": "lv2",
             "buildsystem": "simple",
             "build-commands": [
-                "./waf configure --prefix=/app --libdir=/app/lib --docdir=/app/share/doc/lv2",
-                "./waf build -j $FLATPAK_BUILDER_N_JOBS",
-                "./waf install"
+                "python3 ./waf configure --prefix=/app --libdir=/app/lib --docdir=/app/share/doc/lv2",
+                "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+                "python3 ./waf install"
             ],
             "cleanup": [
                 "/bin",
