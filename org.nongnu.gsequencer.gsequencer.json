@@ -171,31 +171,18 @@
 
         {
             "name": "libinstpatch",
-            "rm-configure": true,
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DLIB_SUFFIX="
+            ],
             "cleanup": [
 		"/share/doc"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/swami/libinstpatch/1.0.0/libinstpatch-1.0.0.tar.gz",
-                    "sha256": "8943e2226d97609104365f0105be87b326a0b2335cea22d29604a45f8ef1cee7"
-                },
-                {
-                    "type": "patch",
-                    "strip-components": 0,
-                    "path": "patches/instpatch.examples.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/instpatch-python-configure.patch"
-                },
-                {
-                    "type": "script",
-                    "commands": [
-                        "autoreconf -fiv"
-                    ],
-                    "dest-filename": "autogen.sh"
+                    "url": "https://github.com/swami/libinstpatch/archive/v1.1.4.tar.gz",
+                    "sha256": "e529b15055b7341ab7a75885338d0a9b84859e3f6ca3ed3c363e7f3521329c9c"
                 }
             ]
         },
@@ -264,12 +251,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.0.8.tar.gz",
-                    "sha256": "0c37e72db31d1b35e587b94b7163d68444cffaa9e7fe8a293d79957620bff117"
+                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.1.2.tar.gz",
+                    "sha256": "9206d83b8d2f7e1ec259ee01e943071de67e419aabe142b51312f8edb39c5503"
                 }
             ]
         },
-	
+
         {
             "name": "cmt",
             "buildsystem": "simple",
@@ -323,7 +310,6 @@
                 }
             ]
         },
-        
         {
             "name": "chrpath",
             "cleanup": ["*"],
@@ -335,153 +321,6 @@
                 }
             ]
         },
-        
-        {
-            "name": "libsoup",
-            "buildsystem": "meson",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libsoup/2.66/libsoup-2.66.1.tar.xz",
-                    "sha256": "4a2cb6c1174540af13661636035992c2b179dfcb39f4d3fa7bee3c7e355c43ff"
-                }
-            ]
-        },
-
-        "shared-modules/libsecret/libsecret.json",
-
-        {
-            "name": "enchant",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/AbiWord/enchant/releases/download/v2.2.3/enchant-2.2.3.tar.gz",
-                    "sha256": "abd8e915675cff54c0d4da5029d95c528362266557c61c7149d53fa069b8076d"
-                }
-            ]
-        },
-        
-        {
-            "name": "gnome-common",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-common/3.18/gnome-common-3.18.0.tar.xz",
-                    "sha256": "22569e370ae755e04527b76328befc4c73b62bfd4a572499fde116b8318af8cf"
-                }
-            ]
-        },
-        
-
-        {
-            "name": "libnotify",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.8.tar.xz",
-                    "sha256": "69209e0b663776a00c7b6c0e560302a8dbf66b2551d55616304f240bba66e18c"
-                }
-            ]
-        },
-        
-        {
-            "name": "openjpeg",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/uclouvain/openjpeg/archive/v2.3.1.tar.gz",
-                    "sha256": "63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
-                }
-            ]
-        },
-
-        {
-            "name": "brotli",
-            "buildsystem": "cmake-ninja",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/google/brotli/archive/v1.0.7.tar.gz",
-                    "sha256": "4c61bfb0faca87219ea587326c467b95acb25555b53d1a421ffa3c8a9296ee2c"
-                }
-            ]
-        },
-
-        {
-            "name": "woff2",
-            "buildsystem": "cmake-ninja",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/google/woff2/archive/v1.0.2.tar.gz",
-                    "sha256": "add272bb09e6384a4833ffca4896350fdb16e0ca22df68c0384773c67a175594"
-                }
-            ]
-        },
-
-        {
-            "name": "webkitgtk",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "build-options": {
-                "cflags": "-g1",
-                "cxxflags": "-g1",
-                "arch": {
-                    "i386": {
-                        "ldflags": "-Wl,--no-keep-memory",
-                        "config-opts": [
-                            "-DCMAKE_SYSTEM_PROCESSOR=i586"
-                        ]
-                    }
-                }
-            },
-            "config-opts": [
-                "-DPORT=GTK",
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DENABLE_PLUGIN_PROCESS_GTK2=OFF",
-                "-DENABLE_GTKDOC=OFF",
-                "-DENABLE_MINIBROWSER=OFF",
-                "-DPYTHON_EXECUTABLE=/usr/bin/python3"
-            ],
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://webkitgtk.org/releases/webkitgtk-2.24.1.tar.xz",
-                    "sha256": "53cb8eaad2ca4caaae663d68331b83fd27d5bd5f6c5388d6ea3c455e338f396d"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/webkitgtk-2-24-1-revert-sse2.patch"
-                }
-            ]
-        },
-        
         {
             "name": "gsequencer",
             "config-opts": [
