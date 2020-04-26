@@ -33,124 +33,11 @@
     ],
     "modules": [
         "shared-modules/gtk2/gtk2.json",
-        {
-            "name": "ladspa",
-            "no-autogen": true,
-            "subdir": "src",
-            "make-install-args": [
-                "INSTALL_PLUGINS_DIR=/app/lib/ladspa",
-                "INSTALL_INCLUDE_DIR=/app/include",
-                "INSTALL_BINARY_DIR=/app/bin"
-            ],
-            "cleanup": [
-                "/bin",
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://www.ladspa.org/download/ladspa_sdk_1.15.tgz",
-                    "sha256": "4229959b09d20c88c8c86f4aa76427843011705df22d9c28b38359fd1829fded"
-                }
-            ]
-        },
-        
-        {
-            "name": "fftw3f",
-            "config-opts": [
-                "--enable-threads",
-                "--enable-shared",
-                "--enable-float",
-                "--disable-static"
-            ],
-            "build-options": {
-                "arch": {
-                    "x86_64": {
-                        "config-opts": [
-                            "--enable-sse2",
-                            "--enable-avx",
-                            "--enable-avx-128-fma"
-                        ]
-                    }
-                }
-            },
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://www.fftw.org/fftw-3.3.7.tar.gz",
-                    "sha256": "3b609b7feba5230e8f6dd8d245ddbefac324c5a6ae4186947670d9ac2cd25573"
-                }
-            ],
-            "cleanup": [
-                "/bin",
-                "/include",
-                "/lib/*.la",
-		"/share/doc"
-            ]
-        },
-        {
-            "name": "jack2",
-            "buildsystem": "simple",
-            "build-commands": [
-                "./waf configure --prefix=/app --htmldir=/app/share/doc/jack/ --classic",
-                "./waf build -j $FLATPAK_BUILDER_N_JOBS",
-                "./waf install"
-            ],
-            "cleanup": [
-                "/bin",
-                "/share",
-                "/lib/jack",
-                "/lib/libjackserver.so*"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/jackaudio/jack2/releases/download/v1.9.14/v1.9.14.tar.gz",
-                    "sha256": "a20a32366780c0061fd58fbb5f09e514ea9b7ce6e53b080a44b11a558a83217c"
-                }
-            ]
-        },
-
-        {
-            "name": "liblo",
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://download.sf.net/sourceforge/liblo/liblo-0.29.tar.gz",
-                    "sha256": "ace1b4e234091425c150261d1ca7070cece48ee3c228a5612d048116d864c06a"
-                }
-            ]
-        },
-
-        {
-            "name": "dssi",
-            "rm-configure": true,
-            "config-opts": [
-                "--disable-static"
-            ],
-            "cleanup": [
-                "/bin",
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://download.sf.net/sourceforge/dssi/dssi-1.1.1.tar.gz",
-                    "sha256": "f2c82b073a947c8255284249097667f9b14e660bf86186f3fcd3b3b3e087814e"
-                },
-                {
-                    "type": "script",
-                    "commands": [
-                        "autoreconf -fiv"
-                    ],
-                    "dest-filename": "autogen.sh"
-                }
-            ]
-        },
-
+        "shared-modules/linux-audio/ladspa.json",
+        "shared-modules/linux-audio/fftw3f.json",
+        "shared-modules/linux-audio/jack2.json",
+        "shared-modules/linux-audio/liblo.json",
+        "shared-modules/linux-audio/dssi.json",
         {
             "name": "audiofile",
             "cleanup": [
@@ -168,47 +55,8 @@
                 }
             ]
         },
-
-        {
-            "name": "libinstpatch",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DLIB_SUFFIX="
-            ],
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/swami/libinstpatch/archive/v1.1.4.tar.gz",
-                    "sha256": "e529b15055b7341ab7a75885338d0a9b84859e3f6ca3ed3c363e7f3521329c9c"
-                }
-            ]
-        },
-
-        {
-            "name": "lv2",
-            "buildsystem": "simple",
-            "build-commands": [
-                "python3 ./waf configure --prefix=/app --libdir=/app/lib --docdir=/app/share/doc/lv2",
-                "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-                "python3 ./waf install"
-            ],
-            "cleanup": [
-                "/bin",
-                "/share",
-                "/lib/jack",
-                "/lib/libjackserver.so*"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://lv2plug.in/spec/lv2-1.16.0.tar.bz2",
-                    "sha256": "dec3727d7bd34a413a344a820678848e7f657b5c6019a0571c61df76d7bdf1de"
-                }
-            ]
-        },
+        "shared-modules/linux-audio/libinstpatch.json",
+        "shared-modules/linux-audio/lv2.json",
 
         {
             "name": "libglade",
@@ -238,25 +86,7 @@
                 }
             ]
         },
-        {
-            "name": "fluidsynth",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DLIB_SUFFIX="
-            ],
-            "cleanup": [
-                "/include",
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.1.2.tar.gz",
-                    "sha256": "9206d83b8d2f7e1ec259ee01e943071de67e419aabe142b51312f8edb39c5503"
-                }
-            ]
-        },
-
+        "shared-modules/linux-audio/fluidsynth2.json",
         {
             "name": "cmt",
             "buildsystem": "simple",
@@ -276,7 +106,7 @@
                 }
             ]
         },
-        
+
         {
             "name": "invada-studio-plugins-lv2",
             "buildsystem": "simple",
