@@ -42,12 +42,20 @@
             "no-autodownload": true
         },
         "org.freedesktop.LinuxAudio.LadspaPlugins": {
-            "directory": "extensions",
+            "directory": "extensions/LadspaPlugins",
             "version": "19.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa",
             "subdirectories": true,
             "no-autodownload": true
+        },
+        "org.freedesktop.LinuxAudio.LadspaPlugins.CMT": {
+            "directory": "extensions/LadspaPlugins/CMT",
+            "version": "19.08",
+            "add-ld-path": "lib",
+            "merge-dirs": "ladspa",
+            "autodelete": false,
+            "subdirectories": true
         }
     },
     "cleanup": [
@@ -113,25 +121,6 @@
             ]
         },
         "shared-modules/linux-audio/fluidsynth2.json",
-        {
-            "name": "cmt",
-            "buildsystem": "simple",
-            "build-commands": [
-                "sed -i -e 's~/usr/lib/ladspa~/app/lib/ladspa~g' src/Makefile",
-                "cd src && make",
-                "cd src && make install"
-            ],
-            "cleanup": [
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://www.ladspa.org/download/cmt_1.17.tgz",
-                    "sha256": "eb56d7abebfdf8a6d0ad65d012238c9fc394dd41eeca11900812a8cb6b07ad1f"
-                }
-            ]
-        },
 
         {
             "name": "invada-studio-plugins-lv2",
