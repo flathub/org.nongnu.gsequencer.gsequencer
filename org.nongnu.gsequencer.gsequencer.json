@@ -21,7 +21,7 @@
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
         "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer/html/index.html",
         "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/extensions/LadspaPlugins/ladspa:/app/lib/ladspa",
-        "--env=DSSI_PATH=/app/extensions/Plugins/dssi:/app/extensions/DssiPlugins/dssi:/app/lib/dssi",
+        "--env=DSSI_PATH=/app/extensions/Plugins/dssi:/app/lib/dssi",
         "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/extensions/Lv2Plugins/lv2:/app/lib/lv2"
     ],
     "add-extensions": {
@@ -41,14 +41,6 @@
             "subdirectories": true,
             "no-autodownload": true
         },
-        "org.freedesktop.LinuxAudio.DssiPlugins": {
-            "directory": "extensions/DssiPlugins",
-            "version": "19.08",
-            "add-ld-path": "lib",
-            "merge-dirs": "dssi",
-            "subdirectories": true,
-            "no-autodownload": true
-        },
         "org.freedesktop.LinuxAudio.LadspaPlugins": {
             "directory": "extensions/LadspaPlugins",
             "version": "19.08",
@@ -57,8 +49,8 @@
             "subdirectories": true,
             "no-autodownload": true
         },
-        "org.freedesktop.LinuxAudio.LadspaPlugins.CMT": {
-            "directory": "extensions/LadspaPlugins/CMT",
+        "org.freedesktop.LinuxAudio.Plugins.CMT": {
+            "directory": "extensions/Plugins/CMT",
             "version": "19.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa",
@@ -187,8 +179,7 @@
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "install -d /app/extensions/Plugins",
                 "install -d /app/extensions/Lv2Plugins",
-                "install -d /app/extensions/LadspaPlugins",
-                "install -d /app/extensions/DssiPlugins"
+                "install -d /app/extensions/LadspaPlugins"
             ],
             "sources": [
                 {
