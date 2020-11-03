@@ -19,7 +19,7 @@
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
-        "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer/html/index.html",
+        "--env=AGS_ONLINE_HELP_PDF_FILENAME=/app/share/doc/gsequencer/pdf/user-manual.pdf",
         "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/lib/ladspa",
         "--env=DSSI_PATH=/app/extensions/Plugins/dssi:/app/lib/dssi",
         "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/lib/lv2"
@@ -50,7 +50,6 @@
         "*.la"
     ],
     "modules": [
-        "shared-modules/gtk2/gtk2.json",
         "shared-modules/linux-audio/ladspa.json",
         "shared-modules/linux-audio/fftw3f.json",
         "shared-modules/linux-audio/jack2.json",
@@ -59,7 +58,7 @@
         {
             "name": "audiofile",
             "cleanup": [
-		"/share/doc"
+                "/share/doc"
             ],
             "sources": [
                 {
@@ -77,36 +76,6 @@
         "shared-modules/linux-audio/lv2.json",
 
         {
-            "name": "libglade",
-            "rm-configure": true,
-            "cleanup": [
-                "/bin",
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libglade/2.6/libglade-2.6.4.tar.gz",
-                    "sha256": "c41d189b68457976069073e48d6c14c183075d8b1d8077cb6dfb8b7c5097add3"
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "rm -f config.guess"
-                    ]
-                },
-                {
-                    "type": "script",
-                    "commands": [
-                        "autoreconf -fiv"
-                    ],
-                    "dest-filename": "autogen.sh"
-                }
-            ]
-        },
-        "shared-modules/linux-audio/fluidsynth2.json",
-
-        {
             "name": "invada-studio-plugins-lv2",
             "buildsystem": "simple",
             "build-commands": [
@@ -115,7 +84,7 @@
                 "make install-sys"
             ],
             "cleanup": [
-		"/share/doc"
+                "/share/doc"
             ],
             "sources": [
                 {
@@ -129,7 +98,7 @@
         {
             "name": "calf-lv2",
             "cleanup": [
-		"/share/doc"
+                "/share/doc"
             ],
             "sources": [
                 {
@@ -150,16 +119,58 @@
                 }
             ]
         },
+
+        "shared-modules/openjpeg/openjpeg.json",
+        {
+            "name": "poppler-data",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://poppler.freedesktop.org/poppler-data-0.4.10.tar.gz",
+                    "sha256": "6e2fcef66ec8c44625f94292ccf8af9f1d918b410d5aa69c274ce67387967b30"
+                }
+            ]
+        },
+        {
+            "name": "poppler",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_GTK_TESTS=OFF",
+                "-DBUILD_QT5_TESTS=OFF",
+                "-DBUILD_CPP_TESTS=OFF",
+                "-DENABLE_UTILS=OFF",
+                "-DENABLE_CPP=OFF",
+                "-DENABLE_QT5=OFF",
+                "-DENABLE_QT6=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://poppler.freedesktop.org/poppler-20.10.0.tar.xz",
+                    "sha256": "434ecbbb539c1a75955030a1c9b24c7b58200b7f68d2e4269e29acf2f8f13336"
+                }
+            ]
+        },
+        
         {
             "name": "gsequencer",
             "config-opts": [
+		"--without-webkit",
+		"--with-poppler",
                 "--disable-introspection",
-		"HTMLHELP_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+                "HTMLHELP_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
             ],
             "post-install": [
-                "make html",
-                "make install-html-mkdir",
-                "make install-html",
+                "make pdf",
+                "make install-pdf-mkdir",
+                "make install-pdf",
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
                 "install -d /app/extensions/Plugins"
             ],
@@ -178,11 +189,11 @@
                 }
             ],
             "cleanup": [
-		"/share/doc/libags-doc",
-		"/share/doc/libags-audio-doc",
-		"/share/doc/libags-gui-doc",
-		"/share/doc/libgsequencer-doc"
-	    ]
+                "/share/doc/libags-doc",
+                "/share/doc/libags-audio-doc",
+                "/share/doc/libags-gui-doc",
+                "/share/doc/libgsequencer-doc"
+            ]
         }
     ]
 }
