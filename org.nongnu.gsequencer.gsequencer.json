@@ -76,34 +76,6 @@
         "shared-modules/linux-audio/libinstpatch.json",
         "shared-modules/linux-audio/lv2.json",
 
-        {
-            "name": "libglade",
-            "rm-configure": true,
-            "cleanup": [
-                "/bin",
-		"/share/doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libglade/2.6/libglade-2.6.4.tar.gz",
-                    "sha256": "c41d189b68457976069073e48d6c14c183075d8b1d8077cb6dfb8b7c5097add3"
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "rm -f config.guess"
-                    ]
-                },
-                {
-                    "type": "script",
-                    "commands": [
-                        "autoreconf -fiv"
-                    ],
-                    "dest-filename": "autogen.sh"
-                }
-            ]
-        },
         "shared-modules/linux-audio/fluidsynth2.json",
 
         {
