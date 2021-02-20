@@ -166,8 +166,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.7.x/gsequencer-3.7.40.tar.gz",
-                    "sha256": "c93e27609c15798f48ca96c56b62ae98f660a0ad6537da7c78c9ba6c490ced7f"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.7.x/gsequencer-3.7.41.tar.gz",
+                    "sha256": "c78499b644d7837da52e8966bd1abfc011c4aa9a11b213d650eb7d9375a97039"
                 },
                 {
                     "type": "shell",
