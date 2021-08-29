@@ -160,7 +160,9 @@
             "name": "vst3sdk",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "cxxflags": "-include cstdio",
+            "env": {
+                "CXXFLAGS": "-include cstdio"
+            },
             "post-install": [
                 "mkdir -pv /include/vst3",
                 "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
@@ -175,11 +177,11 @@
                 },
                 {
                     "type": "patch",
-		    "strip-components": 0,
+                    "strip-components": 0,
                     "path": "patches/vst3sdk.patch"
                 }
             ],
-	    
+            
             "cleanup": [
                 "/include/vst3",
                 "/lib/vst3"
