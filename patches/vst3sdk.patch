@@ -1,0 +1,11 @@
+--- cmake/modules/PlatformToolset.cmake.orig	2021-08-29 19:25:44.338763680 +0200
++++ cmake/modules/PlatformToolset.cmake	2021-08-29 19:26:01.174978951 +0200
+@@ -41,7 +41,7 @@
+                 set(CMAKE_ANDROID_STL_TYPE c++_static)
+                 link_libraries(dl)
+              else()
+-                link_libraries(stdc++fs pthread dl)
++                link_libraries(pthread dl)
+             endif()
+         endif()
+     #------------
