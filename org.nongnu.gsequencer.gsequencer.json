@@ -52,6 +52,8 @@
         "/lib/pkgconfig",
         "/share/man",
         "/share/gtk-doc",
+        "/include/vst3",
+        "/lib/vst3",
         "*.la"
     ],
     "modules": [
@@ -180,10 +182,6 @@
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
                     "commit": "138ac4eb7332d44873fe8ca2e326887ab8ef671a"
                 }
-            ],
-            "cleanup": [
-                "/include/vst3",
-                "/lib/vst3"
             ]
         },
         {
