@@ -60,7 +60,7 @@
         "shared-modules/linux-audio/jack2.json",
         "shared-modules/linux-audio/liblo.json",
         "shared-modules/linux-audio/dssi.json",
-	"gtkmm.yaml",
+        "gtkmm.yaml",
         {
             "name": "audiofile",
             "cleanup": [
@@ -159,15 +159,14 @@
             "name": "vst3sdk",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebugInfo"
-            ],
             "build-options": {
                 "env": {
                     "CXXFLAGS": "-include cstdio"
                 }
             },
-            "install": [
+            "build-commands": [
+                "cmake -DCMAKE_BUILD_TYPE=RelWithDebugInfo ..",
+                "ninja",
                 "mkdir -pv /include/vst3",
                 "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
                 "mkdir -pv /lib/vst3",
