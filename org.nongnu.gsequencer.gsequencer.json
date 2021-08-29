@@ -158,7 +158,7 @@
         },
         {
             "name": "vst3sdk",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
                 "env": {
@@ -175,7 +175,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
-                    "commit": "ef0a70d"
+                    "commit": "2cc517"
                 },
                 {
                     "type": "patch",
@@ -183,7 +183,6 @@
                     "path": "patches/vst3sdk.patch"
                 }
             ],
-            
             "cleanup": [
                 "/include/vst3",
                 "/lib/vst3"
