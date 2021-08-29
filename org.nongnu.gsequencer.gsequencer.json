@@ -160,14 +160,8 @@
             "name": "vst3sdk",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "build-options": {
-                "env": {
-                    "CXXFLAGS": "-include cstdio"
-                }
-            },
-            "build-commands": [
-                "cmake -DCMAKE_BUILD_TYPE=RelWithDebugInfo ..",
-                "ninja",
+            "cxxflags": "-include cstdio",
+            "post-install": [
                 "mkdir -pv /include/vst3",
                 "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
                 "mkdir -pv /lib/vst3",

@@ -2,7 +2,7 @@ name: gtkmm
 sources:
   - sha256: 6d71091bcd1863133460d4188d04102810e9123de19706fb656b7bb915b4adc3
     type: archive
-    url: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.2.tar.xz
+    url: https://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.2.tar.xz
 config-opts:
   - --disable-documentation
 cleanup:
@@ -22,7 +22,7 @@ modules:
     sources:
       - sha256: 0b68dfc6313c6cc90ac989c6d722a1bf0585ad13846e79746aa87cb265904786
         type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.3.tar.xz
+        url: https://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.3.tar.xz
     config-opts:
       - --disable-documentation
     cleanup:
@@ -35,7 +35,7 @@ modules:
     sources:
       - sha256: a75282e58d556d9b2bb44262b6f5fb76c824ac46a25a06f527108bec86b8d4ec
         type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.64/glibmm-2.64.2.tar.xz
+        url: https://ftp.gnome.org/pub/GNOME/sources/glibmm/2.64/glibmm-2.64.2.tar.xz
     config-opts:
       - --disable-documentation
     cleanup:
@@ -51,7 +51,7 @@ modules:
     sources:
       - sha256: a54ada8394a86182525c0762e6f50db6b9212a2109280d13ec6a0b29bfd1afe6
         type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
+        url: https://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
     config-opts:
       - --disable-documentation
     cleanup:
@@ -64,7 +64,7 @@ modules:
     sources:
       - sha256: 14bf04939930870d5cfa96860ed953ad2ce07c3fd8713add4a1bfe585589f40f
         type: archive
-        url: http://ftp.gnome.org/pub/GNOME/sources/pangomm/2.42/pangomm-2.42.1.tar.xz
+        url: https://ftp.gnome.org/pub/GNOME/sources/pangomm/2.42/pangomm-2.42.1.tar.xz
     config-opts:
       - --disable-documentation
     cleanup:
@@ -77,7 +77,7 @@ modules:
     sources:
     - sha256: 4c4cfc917fd42d3879ce997b463428d6982affa0fb660cafcc0bc2d9afcedd3a
       type: archive
-      url: http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.28/atkmm-2.28.0.tar.xz
+      url: https://ftp.gnome.org/pub/GNOME/sources/atkmm/2.28/atkmm-2.28.0.tar.xz
     config-opts:
       - --disable-documentation
     cleanup:
