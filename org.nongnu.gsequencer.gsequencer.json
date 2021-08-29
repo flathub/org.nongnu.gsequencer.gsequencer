@@ -160,9 +160,9 @@
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebugInfo"
             ],
-            "build-options":{
+            "build-options": {
                 "env": {
-                    "CXXFLAGS=-include\ cstdio"
+                    "CXXFLAGS": "-include cstdio"
                 }
             },
             "sources": [
