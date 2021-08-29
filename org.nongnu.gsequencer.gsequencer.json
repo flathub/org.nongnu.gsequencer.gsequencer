@@ -158,13 +158,13 @@
             "name": "vst3sdk",
             "buildsystem": "cmake-ninja",
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebugInfo",
+                "-DCMAKE_BUILD_TYPE=RelWithDebugInfo"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
-                    "commit": "ef0a70d",
+                    "commit": "ef0a70d"
                 },
             ]
         },
