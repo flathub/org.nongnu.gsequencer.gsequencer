@@ -156,10 +156,15 @@
         },
         {
             "name": "vst3sdk",
-            "buildsystem": "cmake-ninja",
+            "buildsystem": "cmake",
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebugInfo"
             ],
+            "build-options":{
+                "env": {
+                    "CXXFLAGS='-include cstdio'"
+                }
+            },
             "sources": [
                 {
                     "type": "git",
