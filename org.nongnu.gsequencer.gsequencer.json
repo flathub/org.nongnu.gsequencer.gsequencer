@@ -162,6 +162,7 @@
             "builddir": true,
             "build-options": {
                 "env": {
+		    "CPPFLAGS": "-std=gnu++17",
                     "CXXFLAGS": "-include cstdio"
                 }
             },
