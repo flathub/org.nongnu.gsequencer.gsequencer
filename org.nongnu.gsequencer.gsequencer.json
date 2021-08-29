@@ -61,6 +61,7 @@
         "shared-modules/linux-audio/jack2.json",
         "shared-modules/linux-audio/liblo.json",
         "shared-modules/linux-audio/dssi.json",
+	"modules/boost.json",
         "gtkmm.yaml",
         {
             "name": "audiofile",
