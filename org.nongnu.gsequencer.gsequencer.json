@@ -175,6 +175,7 @@
                 },
                 {
                     "type": "patch",
+		    "strip-components": 0,
                     "path": "patches/vst3sdk.patch"
                 }
             ],
