@@ -156,7 +156,7 @@
         },
         {
             "name": "vst3sdk",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebugInfo"
             ],
