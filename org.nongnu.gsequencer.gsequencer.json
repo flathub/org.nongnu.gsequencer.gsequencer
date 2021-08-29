@@ -162,7 +162,7 @@
             ],
             "build-options":{
                 "env": {
-                    'CXXFLAGS="-include cstdio"'
+                    "CXXFLAGS=-include\ cstdio"
                 }
             },
             "sources": [
