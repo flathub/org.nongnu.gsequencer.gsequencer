@@ -175,7 +175,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
-                    "commit": "2cc517019a2681fccf211e6a95776a0af1e16d04"
+                    "commit": "138ac4eb7332d44873fe8ca2e326887ab8ef671a"
                 },
                 {
                     "type": "patch",
