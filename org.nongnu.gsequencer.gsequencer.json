@@ -158,10 +158,12 @@
         },
         {
             "name": "vst3sdk",
-            "buildsystem": "cmake-ninja",
+            "buildsystem": "cmake",
             "builddir": true,
-            "env": {
-                "CXXFLAGS": "-include cstdio"
+            "build-options": {
+                "env": {
+                    "CXXFLAGS": "-include cstdio"
+                }
             },
             "post-install": [
                 "mkdir -pv /include/vst3",
