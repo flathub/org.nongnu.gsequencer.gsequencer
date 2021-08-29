@@ -167,10 +167,10 @@
                 }
             },
             "install": {
-                "mkdir -pv /usr/include/vst3",
-                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /usr/include/vst3",
-                "mkdir -pv /usr/lib/vst3",
-                "cp -v lib/Debug/*.a /usr/lib/vst3"
+                "mkdir -pv /include/vst3",
+                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
+                "mkdir -pv /lib/vst3",
+                "cp -v lib/Debug/*.a /lib/vst3"
             }
             "sources": [
                 {
@@ -179,6 +179,10 @@
                     "commit": "ef0a70d"
                 }
             ]
+            "cleanup": [
+                "/include/vst3",
+                "/lib/vst3"
+            ],
         },
         {
             "name": "gsequencer",
