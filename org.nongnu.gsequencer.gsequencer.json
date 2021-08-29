@@ -178,7 +178,7 @@
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
                     "commit": "ef0a70d"
                 }
-            ]
+            ],
             "cleanup": [
                 "/include/vst3",
                 "/lib/vst3"
