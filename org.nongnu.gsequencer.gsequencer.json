@@ -166,6 +166,12 @@
                     "CXXFLAGS": "-include cstdio"
                 }
             },
+            "install": {
+                "mkdir -pv /usr/include/vst3",
+                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /usr/include/vst3",
+                "mkdir -pv /usr/lib/vst3",
+                "cp -v lib/Debug/*.a /usr/lib/vst3"
+            }
             "sources": [
                 {
                     "type": "git",
