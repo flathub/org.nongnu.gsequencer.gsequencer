@@ -183,7 +183,7 @@
             "cleanup": [
                 "/include/vst3",
                 "/lib/vst3"
-            ],
+            ]
         },
         {
             "name": "gsequencer",
