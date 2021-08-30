@@ -200,30 +200,28 @@
                 "HTMLHELP_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
             ],
             "build-options": {
-		"env": {
-		    "VST3_CXXFLAGS": "-stdlib=libc++ -I/app/include/vst3",
-		    "VST3_LIBS": "-L/app/lib/vst3"
-		}
+                "env": {
+                    "VST3_CXXFLAGS": "-stdlib=libc++ -I/app/include/vst3",
+                    "VST3_LIBS": "-L/app/lib/vst3"
+                }
             },
             "post-install": [
                 "make html",
                 "make install-html-mkdir",
                 "make install-html",
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
-		"install -Dm755 COPYING -t /app/share/gsequencer/GPL-3",
+                "install -Dm755 COPYING -t /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/steinbergmedia/vst3sdk.git",
-                    "commit": "ef0a70d",
-                    "dest": "deps/vst3sdk"
-                },
-                {
                     "type": "archive",
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.8.tar.gz",
                     "sha256": "b1ea3cde943bbc46e4ddb8635b21be66458995e87014bae4026137e146cc78cd"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/gsequencer.patch"
                 },
                 {
                     "type": "shell",
