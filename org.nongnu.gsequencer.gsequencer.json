@@ -202,6 +202,7 @@
             ],
             "build-options": {
                 "env": {
+		    "VST3_RELEASE_TYPE": "-DRELEASE",
                     "VST3_CXXFLAGS": "-DRELEASE -I/app/include/vst3",
                     "VST3_LIBS": "-L/app/lib/vst3"
                 }
