@@ -165,9 +165,9 @@
             "builddir": true,
             "build-options": {
                 "env": {
-		    "CPPFLAGS": "-std=gnu++17",
-                    "CXXFLAGS": "-include cstdio -stdlib=libc++",
-		    "LDFLAGS": "-lstdc++fs"
+		    "CPPFLAGS": "-std=gnu++17 -stdlib=libc++",
+                    "CXXFLAGS": "-include cstdio",
+		    "LDFLAGS": "-lstdc++ -lboost_filesystem"
                 }
             },
             "post-install": [
