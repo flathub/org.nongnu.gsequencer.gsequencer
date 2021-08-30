@@ -201,7 +201,7 @@
             ],
             "build-options": {
 		"env": {
-		    "VST3_CXXFLAGS": "-I/app/include/vst3",
+		    "VST3_CXXFLAGS": "-stdlib=libc++ -I/app/include/vst3",
 		    "VST3_LIBS": "-L/app/lib/vst3"
 		}
             },
