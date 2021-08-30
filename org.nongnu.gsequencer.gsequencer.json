@@ -63,7 +63,6 @@
         "shared-modules/linux-audio/jack2.json",
         "shared-modules/linux-audio/liblo.json",
         "shared-modules/linux-audio/dssi.json",
-	"modules/boost.json",
         "gtkmm.yaml",
         {
             "name": "audiofile",
@@ -164,23 +163,32 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
-                "env": {
-		    "CPPFLAGS": "-std=gnu++17 -stdlib=libc++",
-                    "CXXFLAGS": "-include cstdio",
-		    "LDFLAGS": "-lstdc++ -lboost_filesystem"
-                }
+                "cxxflags": "-include cstdio -std=c++2a"
             },
+            "no-make-install": true,
+            "cleanup": [
+                "*"
+            ],
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DSMTG_ADD_VST3_PLUGINS_SAMPLES=OFF",
+                "-DSMTG_ADD_VST3_HOSTING_SAMPLES=OFF"
+            ],
             "post-install": [
-                "mkdir -pv /include/vst3",
-                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
-                "mkdir -pv /lib/vst3",
-                "cp -v lib/Debug/*.a /lib/vst3"
+                "install -d ${FLATPAK_DEST}/include/vst3",
+                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} ${FLATPAK_DEST}/include/vst3",
+                "install -d ${FLATPAK_DEST}/lib/vst3",
+                "cp -v lib/RelWithDebInfo/*.a ${FLATPAK_DEST}/lib/vst3"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
                     "commit": "138ac4eb7332d44873fe8ca2e326887ab8ef671a"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/vst3sdk.patch"
                 }
             ]
         },
@@ -191,6 +199,12 @@
                 "--enable-vst3",
                 "HTMLHELP_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
             ],
+            "build-options": {
+		"env": {
+		    "VST3_CXXFLAGS": "-I/app/include/vst3",
+		    "VST3_LIBS", "-L/app/lib/vst3"
+		}
+            },
             "post-install": [
                 "make html",
                 "make install-html-mkdir",
