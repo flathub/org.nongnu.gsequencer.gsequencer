@@ -63,7 +63,6 @@
         "shared-modules/linux-audio/jack2.json",
         "shared-modules/linux-audio/liblo.json",
         "shared-modules/linux-audio/dssi.json",
-	"modules/boost.json",
         "gtkmm.yaml",
         {
             "name": "audiofile",
@@ -95,7 +94,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libglade/2.6/libglade-2.6.4.tar.gz",
+                    "url": "https://ftp.gnome.org/pub/GNOME/sources/libglade/2.6/libglade-2.6.4.tar.gz",
                     "sha256": "c41d189b68457976069073e48d6c14c183075d8b1d8077cb6dfb8b7c5097add3"
                 },
                 {
@@ -164,23 +163,32 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
-                "env": {
-		    "CPPFLAGS": "-std=gnu++17",
-                    "CXXFLAGS": "-include cstdio -stdlib=libc++",
-		    "LDFLAGS": "-lstdc++fs"
-                }
+                "cxxflags": "-include cstdio -std=c++2a"
             },
+            "no-make-install": true,
+            "cleanup": [
+                "*"
+            ],
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DSMTG_ADD_VST3_PLUGINS_SAMPLES=OFF",
+                "-DSMTG_ADD_VST3_HOSTING_SAMPLES=OFF"
+            ],
             "post-install": [
-                "mkdir -pv /include/vst3",
-                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} /include/vst3",
-                "mkdir -pv /lib/vst3",
-                "cp -v lib/Debug/*.a /lib/vst3"
+                "install -d ${FLATPAK_DEST}/include/vst3",
+                "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} ${FLATPAK_DEST}/include/vst3",
+                "install -d ${FLATPAK_DEST}/lib/vst3",
+                "cp -v lib/RelWithDebInfo/*.a ${FLATPAK_DEST}/lib/vst3"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
                     "commit": "138ac4eb7332d44873fe8ca2e326887ab8ef671a"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/vst3sdk.patch"
                 }
             ]
         },
@@ -196,25 +204,18 @@
                 "make install-html-mkdir",
                 "make install-html",
                 "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
+                "install -Dm755 COPYING -t /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
             ],
             "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/steinbergmedia/vst3sdk.git",
-                    "commit": "ef0a70d",
-                    "dest": "deps/vst3sdk"
-                },
                 {
                     "type": "archive",
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.7.tar.gz",
                     "sha256": "a2b026bc6860e26eb614727123e7f70275e909acc68849297b12cf499e36b4d8"
                 },
                 {
-                    "type": "shell",
-                    "commands": [
-                        "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
-                    ]
+                    "type": "patch",
+                    "path": "patches/gsequencer-build.patch"
                 }
             ],
             "cleanup": [
