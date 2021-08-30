@@ -224,6 +224,13 @@
                     "path": "patches/gsequencer.patch"
                 },
                 {
+                    "type": "script",
+                    "dest-filename": "autogen.sh",
+                    "commands": [
+                        "autoreconf -vif"
+                    ]
+                },
+                {
                     "type": "shell",
                     "commands": [
                         "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
