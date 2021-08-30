@@ -194,7 +194,6 @@
         },
         {
             "name": "gsequencer",
-            "rm-configure": true,
             "config-opts": [
                 "--disable-introspection",
                 "--enable-vst3",
@@ -218,19 +217,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.8.tar.gz",
-                    "sha256": "b1ea3cde943bbc46e4ddb8635b21be66458995e87014bae4026137e146cc78cd"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/gsequencer.patch"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "autogen.sh",
-                    "commands": [
-                        "autoreconf -vif"
-                    ]
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.10.tar.gz",
+                    "sha256": "c98ab1d7f4b31a1b49f0328bd01d4510d3b874e2c57d98c4c11fa998fadedb03"
                 },
                 {
                     "type": "shell",
