@@ -194,6 +194,7 @@
         },
         {
             "name": "gsequencer",
+            "rm-configure": true,
             "config-opts": [
                 "--disable-introspection",
                 "--enable-vst3",
