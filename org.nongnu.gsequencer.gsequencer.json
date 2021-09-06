@@ -201,9 +201,9 @@
             ],
             "build-options": {
                 "env": {
-		    "VST3_RELEASE_TYPE": "-DRELEASE",
-                    "VST3_CXXFLAGS": "-I/app/include/vst3",
-                    "VST3_LIBS": "-L/app/lib/vst3"
+		    "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
+                    "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
+                    "LIBAGS_VST3_LIBS": "-L/app/lib/vst3"
                 }
             },
             "post-install": [
