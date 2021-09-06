@@ -201,9 +201,9 @@
             ],
             "build-options": {
                 "env": {
-		    "VST3_RELEASE_TYPE": "-DRELEASE",
-                    "VST3_CXXFLAGS": "-DRELEASE -I/app/include/vst3",
-                    "VST3_LIBS": "-L/app/lib/vst3"
+		    "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
+                    "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
+                    "LIBAGS_VST3_LIBS": "-L/app/lib/vst3"
                 }
             },
             "post-install": [
@@ -217,8 +217,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.12.tar.gz",
-                    "sha256": "2b250109c225f10673fc8a84efdecf4d61dc537e702d2ef93ab46a0552513c7d"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.10.x/gsequencer-3.10.18.tar.gz",
+                    "sha256": "1609efc5f34eab29866e42eccb99ce403e7c370a2c851ccfecf66545081b6f0b"
                 },
                 {
                     "type": "shell",
