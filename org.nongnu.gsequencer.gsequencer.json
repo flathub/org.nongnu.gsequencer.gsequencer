@@ -201,7 +201,7 @@
             ],
             "build-options": {
                 "env": {
-		    "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
+                    "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBS": "-L/app/lib/vst3"
                 }
@@ -224,6 +224,12 @@
                     "type": "shell",
                     "commands": [
                         "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
+                    ]
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "autoreconf -vfi"
                     ]
                 }
             ],
