@@ -7,7 +7,6 @@
     "rename-desktop-file": "gsequencer.desktop",
     "copy-icon": true,
     "rename-appdata-file": "org.nongnu.gsequencer.gsequencer.appdata.xml",
-    "rename-icon": "gsequencer",
     "finish-args": [
         /* X11 + XShm access */
         "--share=ipc",
@@ -210,15 +209,17 @@
                 "make html",
                 "make install-html-mkdir",
                 "make install-html",
-                "sed -i -e 's~Icon=/app/share/gsequencer/icons/ags.png~Icon=org.nongnu.gsequencer.gsequencer.png~g' /app/share/applications/gsequencer.desktop",
+                "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
+                "find /app/share/icons/hicolor -name 'gsequencer.png' -exec /bin/sh -c 'mv {} $(dirname {})/org.nongnu.gsequencer.gsequencer.png' ';'",
+                "mv /app/share/icons/hicolor/scalable/apps/gsequencer.svg /app/share/icons/hicolor/scalable/apps/org.nongnu.gsequencer.gsequencer.svg",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.15.x/gsequencer-3.15.3.tar.gz",
-                    "sha256": "99f773907a2105ff723c6f6a09f505eed4b1582b14bbf070fe1dd61e3c6144a2"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.15.x/gsequencer-3.15.4.tar.gz",
+                    "sha256": "6ad9c3934d03cc02001ef2a35f23b3b8e63ec3574d8929a46099590a053c2b3b"
                 },
                 {
                     "type": "shell",
