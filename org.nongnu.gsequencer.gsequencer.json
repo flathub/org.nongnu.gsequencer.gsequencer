@@ -211,7 +211,7 @@
                 "make install-html-mkdir",
                 "make install-html",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
-                "find /app/share/icons/hicolor -name 'gsequencer.png' -exec sh -c 'mv {} $(dirname {})/org.nongnu.gsequencer.gsequencer.png' \;",
+                "find /app/share/icons/hicolor -name 'gsequencer.png' -exec /bin/sh -c 'mv {} $(dirname {})/org.nongnu.gsequencer.gsequencer.png' +",
                 "mv /app/share/icons/hicolor/scalable/gsequencer.svg /app/share/icons/hicolor/scalable/org.nongnu.gsequencer.gsequencer.svg",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
