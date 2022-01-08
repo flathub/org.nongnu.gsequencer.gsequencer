@@ -7,7 +7,6 @@
     "rename-desktop-file": "gsequencer.desktop",
     "copy-icon": true,
     "rename-appdata-file": "org.nongnu.gsequencer.gsequencer.appdata.xml",
-    "rename-icon": "gsequencer",
     "finish-args": [
         /* X11 + XShm access */
         "--share=ipc",
