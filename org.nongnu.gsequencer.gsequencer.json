@@ -22,7 +22,6 @@
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
-        "--env=AGS_ONLINE_HELP_START_FILENAME=file:///app/share/doc/gsequencer/html/index.html",
         "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/lib/ladspa",
         "--env=DSSI_PATH=/app/extensions/Plugins/dssi:/app/lib/dssi",
         "--env=VST3_PATH=/app/extensions/Plugins/vst3",
@@ -196,21 +195,18 @@
             "name": "gsequencer",
             "config-opts": [
                 "--disable-introspection",
-                "--enable-vst3",
-                "HTMLHELP_XSL=/usr/share/xml/docbook/xml/xsl-stylesheets/htmlhelp/htmlhelp.xsl"
+                "--without-poppler",
+                "--enable-vst3"
             ],
             "build-options": {
                 "env": {
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBS": "-L/app/lib/vst3",
-                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_ONLINE_HELP_START_FILENAME=\\\"file:///app/share/doc/gsequencer/html/index.html\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
+                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
                 }
             },
             "post-install": [
-                "make html",
-                "make install-html-mkdir",
-                "make install-html",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
@@ -218,7 +214,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.18.x/gsequencer-3.18.2.tar.gz",
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.19.x/gsequencer-3.19.0.tar.gz",
                     "sha256": "d766536996c70ba889af6cb451d7798f0077d9ffb2c34eae95be750027ee49a0"
                 },
                 {
