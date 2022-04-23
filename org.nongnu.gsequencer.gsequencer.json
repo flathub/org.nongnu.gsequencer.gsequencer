@@ -215,7 +215,7 @@
                 {
                     "type": "archive",
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/3.19.x/gsequencer-3.19.0.tar.gz",
-                    "sha256": "d766536996c70ba889af6cb451d7798f0077d9ffb2c34eae95be750027ee49a0"
+                    "sha256": "d972f65dcb18448d610f415dfe7641c799c805941680065557050b352504dfe9"
                 },
                 {
                     "type": "shell",
