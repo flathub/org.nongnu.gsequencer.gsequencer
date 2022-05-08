@@ -1,7 +1,7 @@
 {
     "app-id": "org.nongnu.gsequencer.gsequencer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "40",
+    "runtime-version": "42",
     "sdk": "org.gnome.Sdk",
     "command": "gsequencer",
     "rename-desktop-file": "gsequencer.desktop",
@@ -30,7 +30,7 @@
     "add-extensions": {
         "org.freedesktop.LinuxAudio.Plugins": {
             "directory": "extensions/Plugins",
-            "version": "20.08",
+            "version": "21.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa;dssi;lv2;vst3",
             "subdirectories": true,
@@ -38,7 +38,7 @@
         },
         "org.freedesktop.LinuxAudio.Plugins.CMT": {
             "directory": "extensions/Plugins/CMT",
-            "version": "20.08",
+            "version": "21.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa",
             "autodelete": false,
@@ -183,11 +183,16 @@
                 {
                     "type": "git",
                     "url": "https://github.com/steinbergmedia/vst3sdk.git",
+                    "tag": "v3.7.2_build_28",
                     "commit": "138ac4eb7332d44873fe8ca2e326887ab8ef671a"
                 },
                 {
                     "type": "patch",
                     "path": "patches/vst3sdk.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/vst3sdk-gcc11.patch"
                 }
             ]
         },
