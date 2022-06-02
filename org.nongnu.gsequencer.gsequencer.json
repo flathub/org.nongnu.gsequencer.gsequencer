@@ -250,11 +250,12 @@
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBS": "-L/app/lib/vst3",
-                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_ONLINE_HELP_PDF_FILENAME=\\\"/app/share/doc/gsequencer/pdf/user-manual-a4.pdf\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
+                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
                 }
             },
             "post-install": [
                 "install -c -p -m 644 pdf/user-manual-a4.pdf /app/share/doc/gsequencer/pdf/user-manual-a4.pdf",
+                "install -c -p -m 644 pdf/user-manual-letter.pdf /app/share/doc/gsequencer/pdf/user-manual-letter.pdf",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
@@ -267,10 +268,16 @@
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual.pdf",
-                    "sha256": "817fdb54b51b28e9e1b112ed3f6a33d6a8dc02e3f537780993c752e2ae8ed366",
+                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual-a4.pdf",
+                    "sha256": "51b418dd22b37a3e105430e25a7b0d7788ea940d6b40288a6a65a87c73213c20",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-a4.pdf"
+                },
+                    "type": "file",
+                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual-letter.pdf",
+                    "sha256": "6d7c0ac127b46e78f55b927ef979c5eb0b3f64f6a866858234d021880f56e009",
+                    "dest": "pdf/",
+                    "dest-filename": "user-manual-letter.pdf"
                 },
                 {
                     "type": "shell",
