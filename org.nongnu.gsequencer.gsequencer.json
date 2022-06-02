@@ -274,6 +274,7 @@
                     "dest": "pdf/",
                     "dest-filename": "user-manual-a4.pdf"
                 },
+                {
                     "type": "file",
                     "url": "http://xn--krhemann-1za.com/download/ags-user-manual-letter.pdf",
                     "sha256": "6d7c0ac127b46e78f55b927ef979c5eb0b3f64f6a866858234d021880f56e009",
