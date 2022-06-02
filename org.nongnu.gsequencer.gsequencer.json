@@ -254,6 +254,7 @@
                 }
             },
             "post-install": [
+                "mkdir -p /app/share/doc/gsequencer/pdf/",
                 "install -c -p -m 644 pdf/user-manual-a4.pdf /app/share/doc/gsequencer/pdf/user-manual-a4.pdf",
                 "install -c -p -m 644 pdf/user-manual-letter.pdf /app/share/doc/gsequencer/pdf/user-manual-letter.pdf",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
