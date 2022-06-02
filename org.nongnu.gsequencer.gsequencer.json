@@ -267,14 +267,14 @@
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual-a4.pdf",
+                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-a4-4.1.1.pdf",
                     "sha256": "51b418dd22b37a3e105430e25a7b0d7788ea940d6b40288a6a65a87c73213c20",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-a4.pdf"
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual-letter.pdf",
+                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-letter-4.1.1.pdf",
                     "sha256": "6d7c0ac127b46e78f55b927ef979c5eb0b3f64f6a866858234d021880f56e009",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-letter.pdf"
