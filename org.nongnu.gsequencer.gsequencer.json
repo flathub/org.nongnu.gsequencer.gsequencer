@@ -250,10 +250,13 @@
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBS": "-L/app/lib/vst3",
-                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
+                    "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_ONLINE_HELP_PDF_FILENAME=\\\"/app/share/doc/gsequencer/pdf/user-manual-a4.pdf\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
                 }
             },
             "post-install": [
+                "make pdf",
+                "make install-pdf-mkdir",
+                "make install-pdf",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
@@ -261,8 +264,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.1.x/gsequencer-4.1.0.tar.gz",
-                    "sha256": "921a1192bd872fadb9292dfdb83487b1501eaaf1759daedcab5d2e30715137ce"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.1.x/gsequencer-4.1.1.tar.gz",
+                    "sha256": "1dbda4450fb4744d7f45acd80b8f5aff53f849f196b3343d97f1cb1a65e0c991"
                 },
                 {
                     "type": "shell",
