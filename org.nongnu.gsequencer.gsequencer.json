@@ -254,9 +254,7 @@
                 }
             },
             "post-install": [
-                "make pdf",
-                "make install-pdf-mkdir",
-                "make install-pdf",
+                "install -c -p -m 644 pdf/user-manual-a4.pdf /app/share/doc/gsequencer/pdf/user-manual-a4.pdf",
                 "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
                 "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
                 "install -d /app/extensions/Plugins"
@@ -266,6 +264,13 @@
                     "type": "archive",
                     "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.1.x/gsequencer-4.1.1.tar.gz",
                     "sha256": "1dbda4450fb4744d7f45acd80b8f5aff53f849f196b3343d97f1cb1a65e0c991"
+                },
+                {
+                    "type": "file",
+                    "url": "http://xn--krhemann-1za.com/download/ags-user-manual.pdf",
+                    "sha256": "817fdb54b51b28e9e1b112ed3f6a33d6a8dc02e3f537780993c752e2ae8ed366",
+                    "dest": "pdf/",
+                    "dest-filename": "user-manual-a4.pdf"
                 },
                 {
                     "type": "shell",
