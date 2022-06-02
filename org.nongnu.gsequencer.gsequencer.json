@@ -230,9 +230,9 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://poppler.freedesktop.org/poppler-22.02.0.tar.xz",
+                    "url" : "https://poppler.freedesktop.org/poppler-22.06.0.tar.xz",
 
-                    "sha256" : "e390c8b806f6c9f0e35c8462033e0a738bb2460ebd660bdb8b6dca01556193e1"
+                    "sha256" : "a0f9aaa3918bad781039fc307a635652a14d1b391cd559b66edec4bedba3c5d7"
                 }
             ]
         },
@@ -254,12 +254,10 @@
                 }
             },
             "post-install": [
-                "mkdir -p /app/share/doc/gsequencer/pdf/",
-                "install -c -p -m 644 pdf/user-manual-a4.pdf /app/share/doc/gsequencer/pdf/user-manual-a4.pdf",
-                "install -c -p -m 644 pdf/user-manual-letter.pdf /app/share/doc/gsequencer/pdf/user-manual-letter.pdf",
-                "sed -i -e 's~Icon=gsequencer~Icon=org.nongnu.gsequencer.gsequencer~g' /app/share/applications/gsequencer.desktop",
-                "install -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
-                "install -d /app/extensions/Plugins"
+                "install -D -c -p -m 644 pdf/user-manual-a4.pdf /app/share/doc/gsequencer/pdf/user-manual-a4.pdf",
+                "install -D -c -p -m 644 pdf/user-manual-letter.pdf /app/share/doc/gsequencer/pdf/user-manual-letter.pdf",
+                "install -D -c -p -m 644 COPYING /app/share/gsequencer/GPL-3",
+                "install -D -d /app/extensions/Plugins"
             ],
             "sources": [
                 {
@@ -280,12 +278,6 @@
                     "sha256": "6d7c0ac127b46e78f55b927ef979c5eb0b3f64f6a866858234d021880f56e009",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-letter.pdf"
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "mkdir -p /app/share/gsequencer && cp -v COPYING /app/share/gsequencer/GPL-3"
-                    ]
                 },
                 {
                     "type" : "shell",
