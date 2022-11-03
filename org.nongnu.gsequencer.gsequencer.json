@@ -262,8 +262,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.4.x/gsequencer-4.4.2.tar.gz",
-                    "sha256": "93d50f402e45e4abd2e258fd3453ac897f8ea6cdb925d907ade603b9d6d965f1"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.4.x/gsequencer-4.4.3.tar.gz",
+                    "sha256": "2cdb5581c408a1bdb92f4524a82d43f16f977ecd94ee6362d465199040fd0adb"
                 },
                 {
                     "type": "file",
