@@ -1,7 +1,7 @@
 {
     "app-id": "org.nongnu.gsequencer.gsequencer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "42",
+    "runtime-version": "44",
     "sdk": "org.gnome.Sdk",
     "command": "gsequencer",
     "rename-desktop-file": "gsequencer.desktop",
@@ -18,7 +18,6 @@
         "--device=all",
         /* For pipewire + JACK */
         "--filesystem=xdg-run/pipewire-0",
-        "--system-talk-name=org.freedesktop.RealtimeKit1",
         /* Allow loading, saving files from anywhere (portals don’t work yet) */
         "--filesystem=host",
         "--env=AGS_LICENSE_FILENAME=/app/share/gsequencer/GPL-3",
@@ -30,7 +29,7 @@
     "add-extensions": {
         "org.freedesktop.LinuxAudio.Plugins": {
             "directory": "extensions/Plugins",
-            "version": "21.08",
+            "version": "22.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa;dssi;lv2;vst3",
             "subdirectories": true,
@@ -38,7 +37,7 @@
         },
         "org.freedesktop.LinuxAudio.Plugins.CMT": {
             "directory": "extensions/Plugins/CMT",
-            "version": "21.08",
+            "version": "22.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa",
             "autodelete": false,
@@ -188,11 +187,11 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patches/vst3sdk.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/vst3sdk-gcc11.patch"
+                    "paths": [
+                        "patches/vst3sdk.patch",
+                        "patches/vst3sdk-gcc11.patch",
+                        "patches/vst3sdk-buildfix.patch"
+                    ]
                 }
             ]
         },
