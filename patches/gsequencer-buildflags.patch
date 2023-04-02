@@ -72,3 +72,15 @@ index 9cbe8511a..dc377253b 100644
  endif
  
  midi2xml_SOURCES = ags/midi2xml_main.c
+diff --git a/configure.ac b/configure.ac
+index 4a155e973..98e4ca3a0 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -488,6 +488,7 @@ AS_IF([test "x$enable_vst3" != xno],
+       AC_SUBST(LIBAGS_VST3_CPPFLAGS)
+       AC_SUBST(LIBAGS_VST3_CXXFLAGS)
+       AC_SUBST(LIBAGS_VST3_LDFLAGS)
++      LIBAGS_VST3_LIBS="-lbase -lpluginterfaces -lsdk -lsdk_common -lsdk_hosting -lvstgui -lvstgui_standalone -lvstgui_support -lvstgui_uidescription"
+       AC_SUBST(LIBAGS_VST3_LIBS)
+       AC_MSG_NOTICE([VST3 enabled])],
+       [AC_MSG_NOTICE([VST3 disabled])])
