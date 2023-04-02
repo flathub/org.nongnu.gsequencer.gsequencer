@@ -26,6 +26,7 @@
         "--env=VST3_PATH=/app/extensions/Plugins/vst3",
         "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/lib/lv2"
     ],
+    "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.llvm11" ],
     "add-extensions": {
         "org.freedesktop.LinuxAudio.Plugins": {
             "directory": "extensions/Plugins",
@@ -245,8 +246,8 @@
             ],
             "build-options": {
                 "env": {
-		    "CC": "g++",
-		    "CXX": "g++",		    
+		    "CC": "clang",
+		    "CXX": "clang++",		    
 		    "CPPFLAGS": "-I/include/c++/10",
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
