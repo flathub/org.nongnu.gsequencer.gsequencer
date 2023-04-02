@@ -282,6 +282,12 @@
                     "commands" : [
                         "autoreconf -vfi"
                     ]
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "patches/gsequencer-buildflags.patch"
+                    ]
                 }
             ],
             "cleanup": [

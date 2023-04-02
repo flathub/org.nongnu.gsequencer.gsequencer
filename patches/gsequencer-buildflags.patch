@@ -1,0 +1,32 @@
+diff --git a/Makefile.am b/Makefile.am
+index 9cbe8511a..d4159069f 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -3229,19 +3229,17 @@ gsequencer_c_sources += \
+ 	ags/app/ags_gsequencer_resource.c
+ endif
+ 
+-midi2xml_CPPFLAGS = -std=gnu99 $(CPPFLAGS) 
+-midi2xml_CFLAGS += $(CFLAGS) -I./ $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBXML2_CFLAGS) $(GOBJECT_CFLAGS) $(GIO_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(LIBSOUP_CFLAGS) $(W32API_CFLAGS)
+-midi2xml_LDFLAGS += $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(W32API_LIBS)
+-midi2xml_LDADD = libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la
+-
+-if WITH_W32API
+-else
+ if WITH_OSXAPI
+-midi2xml_LDADD += -ldl
+-midi2xml_CFLAGS += -I/usr/include -I/opt/local/include -I/opt/local/include/dssi
++midi2xml_CPPFLAGS = -x objective-c -framework Cocoa
+ else
++midi2xml_CPPFLAGS = -std=gnu99
+ endif
+-endif
++
++midi2xml_CPPFLAGS += $(CPPFLAGS)
++
++midi2xml_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
++midi2xml_LDFLAGS += -pthread
++midi2xml_LDADD = libags_audio.la libags_server.la libags_thread.la libags.la -lm $(RT_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(W32API_LIBS)
+ 
+ midi2xml_SOURCES = ags/midi2xml_main.c
+ 
