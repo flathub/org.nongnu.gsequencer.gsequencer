@@ -1,48 +1,68 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..5d9fee7a2 100644
+index 9cbe8511a..e3fcd4f46 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -805,7 +805,7 @@ libags_audio_la_LDFLAGS = $(LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread
+@@ -53,6 +53,13 @@ gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
+ midi2xml_CFLAGS = @GSEQUENCER_CFLAGS@
+ midi2xml_LDFLAGS = @GSEQUENCER_LDFLAGS@
+ 
++libags_vst3_RELEASE_TYPE = @LIBAGS_VST3_RELEASE_TYPE@
++libags_vst3_CPPFLAGS = @LIBAGS_VST3_CPPFLAGS@
++libags_vst3_CXXFLAGS = @LIBAGS_VST3_CXXFLAGS@
++libags_vst3_LDFLAGS = @LIBAGS_VST3_LDFLAGS@
++libags_vst3_LIBDIR = @LIBAGS_VST3_LIBDIR@
++libags_vst3_LIBS = @LIBAGS_VST3_LIBS@
++
+ if WITH_W32API
+ LDFLAGS += -no-undefined -L$(top_builddir)/lib -lgnu -L/mingw64/lib -luuid_mingw -Wl,-subsystem,windows
+ 
+@@ -805,7 +812,7 @@ libags_audio_la_LDFLAGS = $(LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread
  libags_audio_la_LIBADD = libags_server.la libags_thread.la libags.la
  
  if WITH_VST3
 -libags_audio_la_LIBADD += libags_vst.la
-+libags_audio_la_LIBADD += $(LIBAGS_VST3_LIBDIR) $(LIBAGS_VST3_LIBS) libags_vst.la
++libags_audio_la_LIBADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
  endif
  
  libags_audio_la_LIBADD += -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(SAMPLERATE_LIBS) $(SNDFILE_LIBS) $(LIBINSTPATCH_LIBS) $(FFTW_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(W32API_LIBS)
-@@ -853,6 +853,10 @@ libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CO
+@@ -853,6 +860,10 @@ libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CO
  libgsequencer_la_LDFLAGS = $(LDFLAGS) -version-info 0:1:0 $(PIC_FLAGS) -pthread
  libgsequencer_la_LIBADD = libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(FFTW_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
  
 +if WITH_VST3
-+libgsequencer_la_LIBADD += $(LIBAGS_VST3_LIBDIR) $(LIBAGS_VST3_LIBS) libags_vst.la
++libgsequencer_la_LIBADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
 +endif
 +
  if WITH_W32API
  libgsequencer_la_CPPFLAGS += -DAGS_LIBRARY_SUFFIX=\".dll\"
  libgsequencer_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libgsequencer.dll.a
-@@ -871,7 +875,7 @@ if WITH_VST3
- libags_vst_la_CPPFLAGS = -std=gnu++2a $(LIBAGS_VST3_RELEASE_TYPE) $(LIBAGS_VST3_CPPFLAGS) -Wall -Wformat -Werror=format-security -Werror=return-type -Werror=uninitialized -Werror=maybe-uninitialized
- libags_vst_la_CXXFLAGS = $(CXXFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(GLIB_CFLAGS) $(LIBAGS_VST3_CXXFLAGS) $(W32API_CFLAGS)
- libags_vst_la_LDFLAGS = $(LDFLAGS) $(LIBAGS_VST3_LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
+@@ -868,10 +879,10 @@ endif
+ 
+ # library libags-vst
+ if WITH_VST3
+-libags_vst_la_CPPFLAGS = -std=gnu++2a $(LIBAGS_VST3_RELEASE_TYPE) $(LIBAGS_VST3_CPPFLAGS) -Wall -Wformat -Werror=format-security -Werror=return-type -Werror=uninitialized -Werror=maybe-uninitialized
+-libags_vst_la_CXXFLAGS = $(CXXFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(GLIB_CFLAGS) $(LIBAGS_VST3_CXXFLAGS) $(W32API_CFLAGS)
+-libags_vst_la_LDFLAGS = $(LDFLAGS) $(LIBAGS_VST3_LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
 -libags_vst_la_LIBADD = -lm $(LIBAGS_VST3_LIBS) -lbase -lpluginterfaces -lsdk -lsdk_common -lsdk_hosting -lvstgui -lvstgui_standalone -lvstgui_support -lvstgui_uidescription $(GLIB_LIBS) $(W32API_LIBS)
-+libags_vst_la_LIBADD = -lm $(LIBAGS_VST3_LIBDIR) $(LIBAGS_VST3_LIBS) $(GLIB_LIBS) $(W32API_LIBS)
++libags_vst_la_CPPFLAGS = -std=gnu++2a $(libags_vst3_RELEASE_TYPE) $(libags_vst3_CPPFLAGS) -Wall -Wformat -Werror=format-security -Werror=return-type -Werror=uninitialized -Werror=maybe-uninitialized
++libags_vst_la_CXXFLAGS = $(CXXFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(GLIB_CFLAGS) $(libags_vst3_CXXFLAGS) $(W32API_CFLAGS)
++libags_vst_la_LDFLAGS = $(LDFLAGS) $(libags_vst3_LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
++libags_vst_la_LIBADD = -lm $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) $(GLIB_LIBS) $(W32API_LIBS)
  
  if WITH_W32API
  libags_vst_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libags_vst.dll.a
-@@ -900,6 +904,10 @@ gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS)
+@@ -900,6 +911,10 @@ gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS)
  gsequencer_LDFLAGS += -pthread
  gsequencer_LDADD = libgsequencer.la libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(RT_LIBS) $(X11_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
  
 +if WITH_VST3
-+gsequencer_LDADD += $(LIBAGS_VST3_LIBDIR) $(LIBAGS_VST3_LIBS) libags_vst.la
++gsequencer_LDADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
 +endif
 +
  if WITH_OSXAPI
  gsequencer_LDFLAGS += -framework Cocoa
  endif
-@@ -3229,18 +3237,20 @@ gsequencer_c_sources += \
+@@ -3229,18 +3244,20 @@ gsequencer_c_sources += \
  	ags/app/ags_gsequencer_resource.c
  endif
  
@@ -68,7 +88,7 @@ index 9cbe8511a..5d9fee7a2 100644
 +midi2xml_LDADD = libags_audio.la libags_server.la libags_thread.la libags.la -lm $(RT_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(W32API_LIBS)
 +
 +if WITH_VST3
-+midi2xml_LDADD += $(LIBAGS_VST3_LIBDIR) $(LIBAGS_VST3_LIBS) libags_vst.la
++midi2xml_LDADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
  endif
  
  midi2xml_SOURCES = ags/midi2xml_main.c
