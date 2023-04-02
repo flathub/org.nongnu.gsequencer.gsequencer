@@ -245,6 +245,8 @@
             ],
             "build-options": {
                 "env": {
+		    "CC": "g++",
+		    "CXX": "g++",		    
 		    "CPPFLAGS": "-I/include/c++/10",
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
