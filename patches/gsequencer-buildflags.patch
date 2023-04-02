@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..22afa5e4b 100644
+index 9cbe8511a..99646557c 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,13 @@ if AGS_WITH_DEBUG
@@ -17,17 +17,17 @@ index 9cbe8511a..22afa5e4b 100644
  
  if WITH_W32API
  else
-@@ -41,6 +47,10 @@ CXXFLAGS =  @CXXFLAGS@
+@@ -38,6 +44,10 @@ endif
+ CFLAGS =  @CFLAGS@
+ CXXFLAGS =  @CXXFLAGS@
+ 
++if WITH_VST3
++CFLAGS += -stdlib=libc++
++endif
++
  LDFLAGS = @LDFLAGS@ $(LTLIBINTL)
  LIBTOOL_DEPS = @LIBTOOL_DEPS@
  
-+if WITH_VST3
-+LDFLAGS += -stdlib=libc++
-+endif
-+
- if WITH_W32API
- PIC_FLAGS = -shared -DDLL_EXPORT -DPIC
- else
 @@ -53,6 +63,13 @@ gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
  midi2xml_CFLAGS = @GSEQUENCER_CFLAGS@
  midi2xml_LDFLAGS = @GSEQUENCER_LDFLAGS@
