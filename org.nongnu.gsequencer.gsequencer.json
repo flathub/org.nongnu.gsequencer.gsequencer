@@ -161,7 +161,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
-                "cxxflags": "-include cstdio -std=c++2a"
+                "cxxflags": "-include cstdio -include limits -std=c++2a"
             },
             "no-make-install": true,
             "cleanup": [
@@ -172,6 +172,10 @@
                 "-DSMTG_ADD_VST3_PLUGINS_SAMPLES=OFF",
                 "-DSMTG_ADD_VST3_HOSTING_SAMPLES=OFF"
             ],
+	    "build-commands":[
+		"cmake -G \"Ninja\" ${config-opts} ..",
+		"sudo ninja"
+	    ],
             "post-install": [
                 "install -d ${FLATPAK_DEST}/include/vst3",
                 "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} ${FLATPAK_DEST}/include/vst3",
@@ -189,7 +193,6 @@
                     "type": "patch",
                     "paths": [
                         "patches/vst3sdk.patch",
-                        "patches/vst3sdk-gcc11.patch",
                         "patches/vst3sdk-buildfix.patch"
                     ]
                 }
