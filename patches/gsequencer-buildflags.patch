@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..ee97d8a6d 100644
+index 9cbe8511a..22afa5e4b 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,13 @@ if AGS_WITH_DEBUG
@@ -17,7 +17,18 @@ index 9cbe8511a..ee97d8a6d 100644
  
  if WITH_W32API
  else
-@@ -53,6 +59,13 @@ gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
+@@ -41,6 +47,10 @@ CXXFLAGS =  @CXXFLAGS@
+ LDFLAGS = @LDFLAGS@ $(LTLIBINTL)
+ LIBTOOL_DEPS = @LIBTOOL_DEPS@
+ 
++if WITH_VST3
++LDFLAGS += -stdlib=libc++
++endif
++
+ if WITH_W32API
+ PIC_FLAGS = -shared -DDLL_EXPORT -DPIC
+ else
+@@ -53,6 +63,13 @@ gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
  midi2xml_CFLAGS = @GSEQUENCER_CFLAGS@
  midi2xml_LDFLAGS = @GSEQUENCER_LDFLAGS@
  
@@ -31,7 +42,7 @@ index 9cbe8511a..ee97d8a6d 100644
  if WITH_W32API
  LDFLAGS += -no-undefined -L$(top_builddir)/lib -lgnu -L/mingw64/lib -luuid_mingw -Wl,-subsystem,windows
  
-@@ -804,10 +817,6 @@ libags_audio_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(COR
+@@ -804,10 +821,6 @@ libags_audio_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(COR
  libags_audio_la_LDFLAGS = $(LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
  libags_audio_la_LIBADD = libags_server.la libags_thread.la libags.la
  
@@ -42,7 +53,7 @@ index 9cbe8511a..ee97d8a6d 100644
  libags_audio_la_LIBADD += -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(SAMPLERATE_LIBS) $(SNDFILE_LIBS) $(LIBINSTPATCH_LIBS) $(FFTW_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(W32API_LIBS)
  
  if WITH_W32API
-@@ -824,6 +833,10 @@ libags_audio_la_LIBADD += -ldl
+@@ -824,6 +837,10 @@ libags_audio_la_LIBADD += -ldl
  endif
  endif
  
@@ -53,7 +64,7 @@ index 9cbe8511a..ee97d8a6d 100644
  # library libags-gui
  libags_gui_la_CPPFLAGS = -std=gnu99 $(CPPFLAGS) $(LIBAGS_GUI_CPPFLAGS)
  libags_gui_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(W32API_CFLAGS)
-@@ -853,6 +866,10 @@ libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CO
+@@ -853,6 +870,10 @@ libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CO
  libgsequencer_la_LDFLAGS = $(LDFLAGS) -version-info 0:1:0 $(PIC_FLAGS) -pthread
  libgsequencer_la_LIBADD = libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(FFTW_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
  
@@ -64,7 +75,7 @@ index 9cbe8511a..ee97d8a6d 100644
  if WITH_W32API
  libgsequencer_la_CPPFLAGS += -DAGS_LIBRARY_SUFFIX=\".dll\"
  libgsequencer_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libgsequencer.dll.a
-@@ -868,10 +885,10 @@ endif
+@@ -868,10 +889,10 @@ endif
  
  # library libags-vst
  if WITH_VST3
@@ -79,7 +90,7 @@ index 9cbe8511a..ee97d8a6d 100644
  
  if WITH_W32API
  libags_vst_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libags_vst.dll.a
-@@ -900,6 +917,10 @@ gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS)
+@@ -900,6 +921,10 @@ gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS)
  gsequencer_LDFLAGS += -pthread
  gsequencer_LDADD = libgsequencer.la libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(RT_LIBS) $(X11_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
  
@@ -90,7 +101,7 @@ index 9cbe8511a..ee97d8a6d 100644
  if WITH_OSXAPI
  gsequencer_LDFLAGS += -framework Cocoa
  endif
-@@ -3229,18 +3250,20 @@ gsequencer_c_sources += \
+@@ -3229,18 +3254,20 @@ gsequencer_c_sources += \
  	ags/app/ags_gsequencer_resource.c
  endif
  
