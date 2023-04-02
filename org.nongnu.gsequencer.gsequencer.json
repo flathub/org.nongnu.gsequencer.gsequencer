@@ -247,7 +247,7 @@
                 "env": {
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
-                    "LIBAGS_VST3_LIBS": "-L/app/lib/vst3",
+                    "LIBAGS_VST3_LIBDIR": "-L/app/lib/vst3",
                     "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
                 }
             },
