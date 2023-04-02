@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..03856e03b 100644
+index 9cbe8511a..ee97d8a6d 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,13 @@ if AGS_WITH_DEBUG
@@ -10,7 +10,7 @@ index 9cbe8511a..03856e03b 100644
 +CPPFLAGS += -include errno.h
 +
 +if WITH_VST3
-+CPPFLAGS += -I/usr/include/c++/10 -include cstdio -include limits
++CPPFLAGS += -include cstdio -include limits -stdlib=libc++
 +endif
 +
 +CPPFLAGS += -DAGS_SRC_DIR=\"$(srcdir)\" -DAGS_DATA_DIR=\"$(datadir)\" -DAGS_DOC_DIR=\"$(docdir)\" -DPACKAGE_VERSION=\"$(PACKAGE_VERSION)\" -DAGS_REDUCE_RT_EVENTS=1
