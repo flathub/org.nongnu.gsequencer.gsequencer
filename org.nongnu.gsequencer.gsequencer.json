@@ -172,10 +172,6 @@
                 "-DSMTG_ADD_VST3_PLUGINS_SAMPLES=OFF",
                 "-DSMTG_ADD_VST3_HOSTING_SAMPLES=OFF"
             ],
-	    "build-commands":[
-		"cmake -G \"Ninja\" ${config-opts} ..",
-		"sudo ninja"
-	    ],
             "post-install": [
                 "install -d ${FLATPAK_DEST}/include/vst3",
                 "cp -rv ../{base,pluginterfaces,public.sdk,vstgui4} ${FLATPAK_DEST}/include/vst3",
