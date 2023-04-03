@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..a02fea027 100644
+index 9cbe8511a..61af763f9 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,7 @@ if AGS_WITH_DEBUG
@@ -38,22 +38,22 @@ index 9cbe8511a..a02fea027 100644
  if WITH_W32API
  LDFLAGS += -no-undefined -L$(top_builddir)/lib -lgnu -L/mingw64/lib -luuid_mingw -Wl,-subsystem,windows
  
-@@ -800,14 +813,10 @@ endif
+@@ -800,13 +813,9 @@ endif
  
  libags_audio_la_CPPFLAGS += $(CPPFLAGS) $(LIBAGS_AUDIO_CPPFLAGS)
  
 -libags_audio_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBXML2_CFLAGS) $(SAMPLERATE_CFLAGS) $(SNDFILE_CFLAGS) $(FFTW_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(LIBSOUP_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(W32API_CFLAGS)
 +libags_audio_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBXML2_CFLAGS) $(SAMPLERATE_CFLAGS) $(SNDFILE_CFLAGS) $(FFTW_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(LIBSOUP_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(W32API_CFLAGS) $(libags_vst3_CXXFLAGS)
  libags_audio_la_LDFLAGS = $(LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
- libags_audio_la_LIBADD = libags_server.la libags_thread.la libags.la
- 
+-libags_audio_la_LIBADD = libags_server.la libags_thread.la libags.la
+-
 -if WITH_VST3
 -libags_audio_la_LIBADD += libags_vst.la
 -endif
--
++libags_audio_la_LIBADD = $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_server.la libags_thread.la libags.la
+ 
  libags_audio_la_LIBADD += -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(SAMPLERATE_LIBS) $(SNDFILE_LIBS) $(LIBINSTPATCH_LIBS) $(FFTW_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(W32API_LIBS)
  
- if WITH_W32API
 @@ -824,6 +833,10 @@ libags_audio_la_LIBADD += -ldl
  endif
  endif
@@ -65,22 +65,22 @@ index 9cbe8511a..a02fea027 100644
  # library libags-gui
  libags_gui_la_CPPFLAGS = -std=gnu99 $(CPPFLAGS) $(LIBAGS_GUI_CPPFLAGS)
  libags_gui_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(W32API_CFLAGS)
-@@ -849,10 +862,14 @@ libgsequencer_la_CPPFLAGS = -std=gnu99
+@@ -849,9 +862,13 @@ libgsequencer_la_CPPFLAGS = -std=gnu99
  endif
  
  libgsequencer_la_CPPFLAGS += $(CPPFLAGS) $(LIBGSEQUENCER_CPPFLAGS)
 -libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBXML2_CFLAGS) $(SNDFILE_CFLAGS) $(FFTW_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(LIBSOUP_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
 +libgsequencer_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBXML2_CFLAGS) $(SNDFILE_CFLAGS) $(FFTW_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(LIBSOUP_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS) $(libags_vst3_CXXFLAGS)
  libgsequencer_la_LDFLAGS = $(LDFLAGS) -version-info 0:1:0 $(PIC_FLAGS) -pthread
- libgsequencer_la_LIBADD = libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(FFTW_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
- 
+-libgsequencer_la_LIBADD = libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(FFTW_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
++libgsequencer_la_LIBADD = $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(CORE_AUDIO_LIBS) $(WASAPI_LIBS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBXML2_LIBS) $(FFTW_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(LIBSOUP_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
++
 +if WITH_VST3
 +libgsequencer_la_LIBADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
 +endif
-+
+ 
  if WITH_W32API
  libgsequencer_la_CPPFLAGS += -DAGS_LIBRARY_SUFFIX=\".dll\"
- libgsequencer_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libgsequencer.dll.a
 @@ -868,10 +885,10 @@ endif
  
  # library libags-vst
@@ -96,22 +96,22 @@ index 9cbe8511a..a02fea027 100644
  
  if WITH_W32API
  libags_vst_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libags_vst.dll.a
-@@ -896,10 +913,14 @@ endif
+@@ -896,9 +913,13 @@ endif
  
  gsequencer_CPPFLAGS += $(CPPFLAGS)
  
 -gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
 +gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS) $(libags_vst3_CXXFLAGS)
  gsequencer_LDFLAGS += -pthread
- gsequencer_LDADD = libgsequencer.la libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(RT_LIBS) $(X11_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
- 
+-gsequencer_LDADD = libgsequencer.la libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(RT_LIBS) $(X11_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
++gsequencer_LDADD = $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libgsequencer.la libags_audio.la libags_server.la libags_gui.la libags_thread.la libags.la -lm $(RT_LIBS) $(X11_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(CAIRO_LIBS) $(GTK_LIBS) $(GTK_UNIX_PRINT_LIBS) $(POPPLER_LIBS) $(W32API_LIBS)
++
 +if WITH_VST3
 +gsequencer_LDADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
 +endif
-+
+ 
  if WITH_OSXAPI
  gsequencer_LDFLAGS += -framework Cocoa
- endif
 @@ -3229,18 +3250,20 @@ gsequencer_c_sources += \
  	ags/app/ags_gsequencer_resource.c
  endif
@@ -135,7 +135,7 @@ index 9cbe8511a..a02fea027 100644
 +
 +midi2xml_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS) $(libags_vst3_CXXFLAGS)
 +midi2xml_LDFLAGS += -pthread
-+midi2xml_LDADD = libags_audio.la libags_server.la libags_thread.la libags.la -lm $(RT_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(W32API_LIBS)
++midi2xml_LDADD = $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_audio.la libags_server.la libags_thread.la libags.la -lm $(RT_LIBS) $(CORE_AUDIO_CFLAGS) $(WASAPI_CFLAGS) $(LIBASOUND2_LIBS) $(LIBDSSIALSACOMPAT_LIBS) $(LIBAO_LIBS) $(LIBXML2_LIBS) $(LIBSOUP_LIBS) $(SNDFILE_LIBS) $(JACK_LIBS) $(PULSE_LIBS) $(GSTREAMER_LIBS) $(LIBINSTPATCH_LIBS) $(GOBJECT_LIBS) $(W32API_LIBS)
 +
 +if WITH_VST3
 +midi2xml_LDADD += $(libags_vst3_LIBDIR) $(libags_vst3_LIBS) libags_vst.la
