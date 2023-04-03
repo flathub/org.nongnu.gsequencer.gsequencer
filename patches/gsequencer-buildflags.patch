@@ -1,22 +1,29 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..8124058bc 100644
+index 9cbe8511a..02fb7d09a 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -21,7 +21,13 @@ if AGS_WITH_DEBUG
+@@ -21,7 +21,7 @@ if AGS_WITH_DEBUG
  CPPFLAGS += -g
  endif
  
 -CPPFLAGS += -include errno.h -DAGS_SRC_DIR=\"$(srcdir)\" -DAGS_DATA_DIR=\"$(datadir)\" -DAGS_DOC_DIR=\"$(docdir)\" -DPACKAGE_VERSION=\"$(PACKAGE_VERSION)\" -DAGS_REDUCE_RT_EVENTS=1
-+CPPFLAGS += -include errno.h
-+
-+if WITH_VST3
-+CPPFLAGS += -include cstdio -include limits
-+endif
-+
 +CPPFLAGS += -DAGS_SRC_DIR=\"$(srcdir)\" -DAGS_DATA_DIR=\"$(datadir)\" -DAGS_DOC_DIR=\"$(docdir)\" -DPACKAGE_VERSION=\"$(PACKAGE_VERSION)\" -DAGS_REDUCE_RT_EVENTS=1
  
  if WITH_W32API
  else
+@@ -38,6 +38,12 @@ endif
+ CFLAGS =  @CFLAGS@
+ CXXFLAGS =  @CXXFLAGS@
+ 
++CFLAGS += -include errno.h
++
++if WITH_VST3
++CXXFLAGS += -include cstdio -include limits
++endif
++
+ LDFLAGS = @LDFLAGS@ $(LTLIBINTL)
+ LIBTOOL_DEPS = @LIBTOOL_DEPS@
+ 
 @@ -53,6 +59,13 @@ gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
  midi2xml_CFLAGS = @GSEQUENCER_CFLAGS@
  midi2xml_LDFLAGS = @GSEQUENCER_LDFLAGS@
