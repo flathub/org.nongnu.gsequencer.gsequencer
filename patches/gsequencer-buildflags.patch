@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..f823974e7 100644
+index 9cbe8511a..84ff6202b 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,7 @@ if AGS_WITH_DEBUG
@@ -11,19 +11,21 @@ index 9cbe8511a..f823974e7 100644
  
  if WITH_W32API
  else
-@@ -38,6 +38,12 @@ endif
+@@ -38,7 +38,13 @@ endif
  CFLAGS =  @CFLAGS@
  CXXFLAGS =  @CXXFLAGS@
  
+-LDFLAGS = @LDFLAGS@ $(LTLIBINTL)
 +CFLAGS += -include errno.h
 +
 +if WITH_VST3
 +CXXFLAGS += -include cstdio -include limits
 +endif
 +
- LDFLAGS = @LDFLAGS@ $(LTLIBINTL)
++LDFLAGS = @LDFLAGS@ $(LTLIBINTL) -lstdc++
  LIBTOOL_DEPS = @LIBTOOL_DEPS@
  
+ if WITH_W32API
 @@ -50,8 +56,15 @@ endif
  gsequencer_CFLAGS = @GSEQUENCER_CFLAGS@
  gsequencer_LDFLAGS = @GSEQUENCER_LDFLAGS@
