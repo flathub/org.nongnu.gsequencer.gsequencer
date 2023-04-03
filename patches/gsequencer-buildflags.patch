@@ -1,5 +1,5 @@
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..02fb7d09a 100644
+index 9cbe8511a..185214a3d 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,7 @@ if AGS_WITH_DEBUG
@@ -38,6 +38,21 @@ index 9cbe8511a..02fb7d09a 100644
  if WITH_W32API
  LDFLAGS += -no-undefined -L$(top_builddir)/lib -lgnu -L/mingw64/lib -luuid_mingw -Wl,-subsystem,windows
  
+@@ -71,12 +84,12 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+ # the previous manual Makefile
+ lib_LTLIBRARIES = libags.la libags_thread.la libags_server.la
+ 
++lib_LTLIBRARIES += libags_audio.la libags_gui.la
++
+ if WITH_VST3
+ lib_LTLIBRARIES += libags_vst.la 
+ endif
+ 
+-lib_LTLIBRARIES += libags_audio.la libags_gui.la
+-
+ # lib_LTLIBRARIES += libgsequencer.la
+ 
+ bin_PROGRAMS = gsequencer midi2xml
 @@ -804,10 +817,6 @@ libags_audio_la_CFLAGS = $(CFLAGS) $(COMPILER_FLAGS) $(WARN_FLAGS) -O -I./ $(COR
  libags_audio_la_LDFLAGS = $(LDFLAGS) -version-info 4:0:0 $(PIC_FLAGS) -pthread 
  libags_audio_la_LIBADD = libags_server.la libags_thread.la libags.la
@@ -128,15 +143,15 @@ index 9cbe8511a..02fb7d09a 100644
  
  midi2xml_SOURCES = ags/midi2xml_main.c
 diff --git a/configure.ac b/configure.ac
-index 4a155e973..0e675684f 100644
+index 4a155e973..5017ba6a2 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -484,10 +484,13 @@ WITH_VST3=0
  
  AS_IF([test "x$enable_vst3" != xno],
        [AC_DEFINE([AGS_WITH_VST3], [1], [VST3 enabled])
-+      AC_DEFINE([AGS_VST3_LIBDIR], ["-L$exec_prefix/lib/vst3"], [libdir path])
-+      AC_DEFINE([LIBAGS_VST3_LIBS], ["-lbase -lpluginterfaces -lsdk -lsdk_common -lsdk_hosting -lvstgui -lvstgui_standalone -lvstgui_support -lvstgui_uidescription"], [VST3 libraries])
++      AGS_VST3_LIBDIR="-L$exec_prefix/lib/vst3"
++      LIBAGS_VST3_LIBS="-lbase -lpluginterfaces -lsdk -lsdk_common -lsdk_hosting -lvstgui -lvstgui_standalone -lvstgui_support -lvstgui_uidescription"
        AC_SUBST(LIBAGS_VST3_RELEASE_TYPE)
        AC_SUBST(LIBAGS_VST3_CPPFLAGS)
        AC_SUBST(LIBAGS_VST3_CXXFLAGS)
