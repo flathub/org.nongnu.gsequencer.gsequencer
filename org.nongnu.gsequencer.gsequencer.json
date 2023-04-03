@@ -55,13 +55,13 @@
         "*.la"
     ],
     "modules": [
-	{
-	    "name" : "org.nongnu.gsequencer.gsequencer",
-	    "build-options":{
-		"prepend-path": "/usr/lib/sdk/llvm11/bin",
-		"prepend-ld-library-path": "/usr/lib/sdk/llvm11/lib"
-	    }
-	},
+        {
+            "name" : "org.nongnu.gsequencer.gsequencer",
+            "build-options":{
+                "prepend-path": "/usr/lib/sdk/llvm11/bin",
+                "prepend-ld-library-path": "/usr/lib/sdk/llvm11/lib"
+            }
+        },
         "shared-modules/gtk2/gtk2.json",
         "shared-modules/linux-audio/ladspa.json",
         "shared-modules/linux-audio/fftw3f.json",
@@ -252,6 +252,7 @@
             ],
             "build-options": {
                 "env": {
+                    "LDFLAGS": "-stdlib=libc++ -lc++abi",
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBDIR": "-L/app/lib/vst3",
