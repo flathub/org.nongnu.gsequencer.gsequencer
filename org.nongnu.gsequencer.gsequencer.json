@@ -267,8 +267,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.5.x/gsequencer-4.5.0.tar.gz",
-                    "sha256": "4ce2480780053faf2d7f54a342236709d73eb8329ba808a6590bbedf2610f000"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/4.5.x/gsequencer-4.5.1.tar.gz",
+                    "sha256": "447cbd4323e2f760c811414e8af5797853493aba79c782e73ecbd2ada8659856"
                 },
                 {
                     "type": "file",
@@ -293,7 +293,7 @@
                 {
                     "type": "patch",
                     "paths": [
-                        "patches/gsequencer-buildflags.patch"
+                        "patches/gsequencer-vst3sdk.patch"
                     ]
                 }
             ],
