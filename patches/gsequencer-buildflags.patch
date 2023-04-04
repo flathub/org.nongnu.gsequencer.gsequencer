@@ -1,20 +1,19 @@
 diff --git a/ChangeLog b/ChangeLog
-index 0568552d6..6edbcb366 100644
+index 0568552d6..350858e8e 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,10 @@
+@@ -1,3 +1,9 @@
 +ags (4.5.1)
 +
 +	[ Joël Krähemann (Maintainer of Advanced Gtk+ Sequencer) ]
 +	* added check LIBAGS_VST3_LIBDIR and LIBAGS_VST3_LIBS environment before set in configure.ac
 +	* improved Makefile.am MIDI2XML_CFLAGS and MIDI2XML_LDFLAGS
-+	* reverted updatehandler.h and updatehandler.cpp build vst3sdk with tag v3.7.7_build_19
 +
  ags (4.5.0)
  
  	[ Joël Krähemann (Maintainer of Advanced Gtk+ Sequencer) ]
 diff --git a/Makefile.am b/Makefile.am
-index 9cbe8511a..ac42d4520 100644
+index 9cbe8511a..ff314be56 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -21,7 +21,7 @@ if AGS_WITH_DEBUG
@@ -148,8 +147,16 @@ index 9cbe8511a..ac42d4520 100644
  
  if WITH_W32API
  libags_vst_la_LDFLAGS += -Wl,--export-all-symbols,--out-implib=libags_vst.dll.a
-@@ -897,8 +926,15 @@ endif
- gsequencer_CPPFLAGS += $(CPPFLAGS)
+@@ -891,14 +920,21 @@ gsequencer_SOURCES = $(gsequencer_c_sources) $(gsequencerheaders)
+ if WITH_OSXAPI
+ gsequencer_CPPFLAGS = -x objective-c -framework Cocoa
+ else
+-gsequencer_CPPFLAGS = -std=gnu99
++gsequencer_CPPFLAGS = -std=gnu++2a
+ endif
+ 
+-gsequencer_CPPFLAGS += $(CPPFLAGS)
++gsequencer_CPPFLAGS += $(CPPFLAGS) $(libags_vst3_RELEASE_TYPE)
  
  gsequencer_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
 +gsequencer_CXXFLAGS += $(CXXFLAGS) $(libags_vst3_CXXFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
@@ -174,10 +181,10 @@ index 9cbe8511a..ac42d4520 100644
 +if WITH_OSXAPI
 +midi2xml_CPPFLAGS = -x objective-c -framework Cocoa
 +else
-+midi2xml_CPPFLAGS = -std=gnu99
++midi2xml_CPPFLAGS = -std=gnu++2a
 +endif
 +
-+midi2xml_CPPFLAGS += $(CPPFLAGS)
++midi2xml_CPPFLAGS += $(CPPFLAGS) $(libags_vst3_RELEASE_TYPE)
 +
 +midi2xml_CFLAGS += $(CFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
 +midi2xml_CXXFLAGS += $(CXXFLAGS) $(libags_vst3_CXXFLAGS) $(LIBASOUND2_CFLAGS) $(LIBDSSIALSACOMPAT_CFLAGS) $(LIBAO_CFLAGS) $(LIBXML2_CFLAGS) $(LIBSOUP_CFLAGS) $(SNDFILE_CFLAGS) $(JACK_CFLAGS) $(PULSE_CFLAGS) $(GSTREAMER_CFLAGS) $(LIBINSTPATCH_CFLAGS) $(GOBJECT_CFLAGS) $(CAIRO_CFLAGS) $(GTK_CFLAGS) $(GTK_UNIX_PRINT_CFLAGS) $(POPPLER_CFLAGS) $(W32API_CFLAGS)
@@ -201,16 +208,7 @@ index 9cbe8511a..ac42d4520 100644
  # unit and functional tests
  check_PROGRAMS = 
  
-@@ -3154,6 +3219,8 @@ libags_vst_c_sources = \
- 	$(deprecated_libags_vst_c_sources) \
- 	ags/vst3-capi/host/ags_vst_component_handler.cpp \
- 	ags/vst3-capi/host/ags_vst_host_context.cpp \
-+	ags/vst3-capi/host/updatehandler.h \
-+	ags/vst3-capi/host/updatehandler.cpp \
- 	ags/vst3-capi/host/componenthandler.h \
- 	ags/vst3-capi/host/hostcontext.h \
- 	ags/vst3-capi/host/componenthandler.cpp \
-@@ -3229,22 +3296,6 @@ gsequencer_c_sources += \
+@@ -3229,22 +3294,6 @@ gsequencer_c_sources += \
  	ags/app/ags_gsequencer_resource.c
  endif
  
