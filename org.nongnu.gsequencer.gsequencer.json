@@ -289,12 +289,6 @@
                     "commands" : [
                         "autoreconf -vfi"
                     ]
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "patches/gsequencer-vst3sdk.patch"
-                    ]
                 }
             ],
             "cleanup": [
