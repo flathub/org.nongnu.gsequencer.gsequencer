@@ -245,6 +245,7 @@
         {
             "name": "gsequencer",
             "config-opts": [
+		"--enable-debug",
                 "--disable-introspection",
                 "--enable-vst3",
                 "--with-poppler",
