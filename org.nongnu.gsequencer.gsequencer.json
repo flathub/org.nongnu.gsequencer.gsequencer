@@ -45,7 +45,6 @@
         }
     },
     "cleanup": [
-        "/bin/jack*",
         "/include",
         "/lib/pkgconfig",
         "/share/man",
@@ -65,7 +64,6 @@
         "shared-modules/gtk2/gtk2.json",
         "shared-modules/linux-audio/ladspa.json",
         "shared-modules/linux-audio/fftw3f.json",
-        "shared-modules/linux-audio/jack2.json",
         "shared-modules/linux-audio/liblo.json",
         "shared-modules/linux-audio/dssi.json",
         "gtkmm.yaml",
