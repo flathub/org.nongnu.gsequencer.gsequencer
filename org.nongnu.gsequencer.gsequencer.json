@@ -260,8 +260,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/6.8.x/gsequencer-6.8.1.tar.gz",
-                    "sha256": "62bdd1434771c9f02e033b0ec9c16b03191c02f13d54ef629e8fc866b54b1f05"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/6.8.x/gsequencer-6.8.2.tar.gz",
+                    "sha256": "0060e622a23c1d66ce0dd52e5312dad0bc2569d00ea7668456126b30c2c902d5"
                 },
                 {
                     "type": "file",
