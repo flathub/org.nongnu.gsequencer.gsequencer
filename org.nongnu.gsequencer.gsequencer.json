@@ -237,6 +237,7 @@
         {
             "name": "gsequencer",
             "config-opts": [
+		"--enable-flatpak-sandbox",
                 "--disable-introspection",
                 "--enable-vst3",
                 "--with-poppler",
@@ -259,8 +260,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/6.7.x/gsequencer-6.7.3.tar.gz",
-                    "sha256": "7c42f60069706ad2e8e93be3515c67693d35f48eb13d2f062f7cce1f6b923a45"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/6.8.x/gsequencer-6.8.1.tar.gz",
+                    "sha256": "62bdd1434771c9f02e033b0ec9c16b03191c02f13d54ef629e8fc866b54b1f05"
                 },
                 {
                     "type": "file",
