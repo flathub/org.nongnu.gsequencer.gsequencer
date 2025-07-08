@@ -248,8 +248,6 @@
                     "LIBAGS_VST3_RELEASE_TYPE": "-DRELEASE",
                     "LIBAGS_VST3_CXXFLAGS": "-I/app/include/vst3",
                     "LIBAGS_VST3_LIBDIR": "-L/app/lib/vst3",
-		    "GSEQUENCER_LDFLAGS=": "-L/app/lib -lstdc++",
-		    "MIDI2XML_LDFLAGS=": "-L/app/lib -lstdc++",
                     "LIBGSEQUENCER_CPPFLAGS": "-DAGS_WINDOW_APP_ICON=\\\"/app/share/icons/hicolor/128x128/apps/org.nongnu.gsequencer.gsequencer.png\\\" -DAGS_CSS_FILENAME=\\\"/app/share/gsequencer/styles/ags.css\\\" -DAGS_ANIMATION_FILENAME=\\\"/app/share/gsequencer/images/gsequencer-800x450.png\\\" -DAGS_LOGO_FILENAME=\\\"/app/share/gsequencer/images/ags.png\\\" -DAGS_LICENSE_FILENAME=\\\"/app/share/gsequencer/GPL-3\\\" -DAGS_REDUCE_RT_EVENTS=1 -DAGS_LIBRARY_SUFFIX=\\\".so\\\" -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security"
                 }
             },
@@ -262,8 +260,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/8.0.x/gsequencer-8.0.2.tar.gz",
-                    "sha256": "eeff6b596bf69464009b6484042ba5e297f690d9df4b8325eb9cfe7e79037ad2"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/8.0.x/gsequencer-8.0.5.tar.gz",
+                    "sha256": "8793e1b1ab87d165bb4a74a2c2235d2820652c7de6564acefd840b4ed186d705"
                 },
                 {
                     "type": "file",
