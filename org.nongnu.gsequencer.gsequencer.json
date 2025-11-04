@@ -1,7 +1,7 @@
 {
     "app-id": "org.nongnu.gsequencer.gsequencer",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "45",
+    "runtime-version": "49",
     "sdk": "org.gnome.Sdk",
     "command": "gsequencer",
     "rename-desktop-file": "gsequencer.desktop",
@@ -29,7 +29,7 @@
     "add-extensions": {
         "org.freedesktop.LinuxAudio.Plugins": {
             "directory": "extensions/Plugins",
-            "version": "23.08",
+            "version": "25.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa;dssi;lv2;vst3",
             "subdirectories": true,
@@ -37,7 +37,7 @@
         },
         "org.freedesktop.LinuxAudio.Plugins.CMT": {
             "directory": "extensions/Plugins/CMT",
-            "version": "23.08",
+            "version": "25.08",
             "add-ld-path": "lib",
             "merge-dirs": "ladspa",
             "autodelete": false,
@@ -132,6 +132,9 @@
         
         {
             "name": "calf-lv2",
+            "config-opts": [
+                "--with-bash-completion-dir=no"
+            ],
             "cleanup": [
                 "/share/doc"
             ],
@@ -166,6 +169,7 @@
                 "*"
             ],
             "config-opts": [
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DSMTG_ADD_VST3_PLUGINS_SAMPLES=OFF",
                 "-DSMTG_ADD_VST3_HOSTING_SAMPLES=OFF"
@@ -188,7 +192,8 @@
                     "paths": [
                         "patches/vst3sdk.patch",
                         "patches/vst3sdk-buildfix.patch",
-                        "patches/vst3sdk-public.patch"
+                        "patches/vst3sdk-public.patch",
+                        "patches/vst3sdk-vstgui.patch"
                     ]
                 }
             ]
