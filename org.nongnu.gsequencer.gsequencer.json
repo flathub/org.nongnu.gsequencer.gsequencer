@@ -270,14 +270,14 @@
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-a4-8.3.2.pdf",
+                    "url": "https://gsequencer.org/download/pdf/ags-user-manual-a4-8.3.2.pdf",
                     "sha256": "8c0a54d6af0e2a8aac0b7e68b38a73c136ec55349de8058f23fc35e6a17721b8",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-a4.pdf"
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-letter-8.3.2.pdf",
+                    "url": "https://gsequencer.org/download/pdf/ags-user-manual-letter-8.3.2.pdf",
                     "sha256": "54bc5e20f4d1927acca1c4570df8821076d2f74c5ba9b08724dbdf408d72d96a",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-letter.pdf"
