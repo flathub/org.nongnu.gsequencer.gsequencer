@@ -265,20 +265,20 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/8.2.x/gsequencer-8.2.9.tar.gz",
-                    "sha256": "c1051c110738a2168448f8708e2562cb528c96c09bde8bee43eb0190035123c4"
+                    "url": "https://download-mirror.savannah.gnu.org/releases/gsequencer/8.3.x/gsequencer-8.3.2.tar.gz",
+                    "sha256": "e70c7bc5f0c56b0151cc6676eed1eb410ad308d4267f6792fe596f33625d3606"
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-a4-6.11.4.pdf",
-                    "sha256": "b29f1026af8228f4ce1f023136a6a77f10f60250d631aba943f4713a564421e7",
+                    "url": "https://gsequencer.org/download/pdf/ags-user-manual-a4-8.3.2.pdf",
+                    "sha256": "8c0a54d6af0e2a8aac0b7e68b38a73c136ec55349de8058f23fc35e6a17721b8",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-a4.pdf"
                 },
                 {
                     "type": "file",
-                    "url": "http://xn--krhemann-1za.com/download/pdf/ags-user-manual-letter-6.11.4.pdf",
-                    "sha256": "9070bf63a459f317b7a8fae8f0d6d6732122982dac5b31f817001a9ea029e575",
+                    "url": "https://gsequencer.org/download/pdf/ags-user-manual-letter-8.3.2.pdf",
+                    "sha256": "54bc5e20f4d1927acca1c4570df8821076d2f74c5ba9b08724dbdf408d72d96a",
                     "dest": "pdf/",
                     "dest-filename": "user-manual-letter.pdf"
                 },
